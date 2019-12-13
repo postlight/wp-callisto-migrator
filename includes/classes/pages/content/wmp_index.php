@@ -13,6 +13,11 @@ function wmp_index()
     $wmpHelper = new WmpHelpers();
     $wmp_fetch_posts_nonce = wp_create_nonce("wmp_fetch_posts");
     $wmp_fetch_posts_ajax_url = admin_url('admin-ajax.php?action=wmp_fetch_posts');
+    $wmp_post_types = get_post_types([
+        'public' => true,
+        '_builtin' => false,
+    ], 'names', 'and');
+
     ?>
     <div class="wmp_page wmp_index">
         <div class="wrap">
@@ -50,6 +55,43 @@ function wmp_index()
                                               class="wmp_urls"></textarea>
 
                                     <br>
+
+                                    <?php
+                                    if (!empty($wmp_post_types)) {
+                                        ?>
+                                        <p>
+                                            <b>Posts Type (create posts for):</b>
+                                        </p>
+                                        <select id="wmp_post_type">
+                                            <option selected="selected" value="post">Post (default)</option>
+                                            <?php
+                                            foreach ($wmp_post_types as $wmp_post_type) {
+                                                ?>
+                                                <option value="<?php echo $wmp_post_type; ?>">
+                                                    <?php echo $wmp_post_type; ?>
+                                                </option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                        <br>
+                                        <br>
+                                        <?php
+                                    }
+                                    ?>
+
+                                    <p>
+                                        <b>Posts Status:</b>
+                                    </p>
+
+                                    <select id="wmp_post_status">
+                                        <option selected="selected" value="publish">Publish</option>
+                                        <option value="draft">Draft</option>
+                                    </select>
+
+                                    <br>
+                                    <br>
+
                                     <input
                                             id="wmp_fetch_posts"
                                             class="button-secondary" type="submit"
@@ -93,7 +135,7 @@ function wmp_index()
                         <!-- generated-posts-content -->
                         <div class="poststuff wmp_generated_posts" style="display: none">
 
-                            <h1><?php esc_attr_e('Fetched And Created Posts', 'wpMercuryParser'); ?></h1>
+                            <h1><?php esc_attr_e('Fetched And Created/Updated Posts', 'wpMercuryParser'); ?></h1>
 
                             <div class="post-body metabox-holder wmp_generated_to_clone" style="display: none">
                                 <!-- main content -->
@@ -279,6 +321,8 @@ function wmp_index()
                 var $nonce = jQuery('#wmp_fetch_posts_nonce').val();
                 var $ajax_url = jQuery('#wmp_fetch_posts_ajax_url').val();
                 var $fetch_posts_urls = jQuery('#wmp_urls_field').val();
+                var $post_type = jQuery('#wmp_post_type').val();
+                var $post_status = jQuery('#wmp_post_status').val();
 
                 //Show spinner
                 wmp_show_spinner();
@@ -311,7 +355,7 @@ function wmp_index()
                 //Verify nonce and ajax URL
                 if (!$nonce || !$ajax_url) {
                     //Return notice
-                    wmp_return_notice('An error occurred, please refresh to try again or contact us at https://postlight.com/contact', 'notice-error');
+                    wmp_return_notice('An error occurred, please refresh to try again or contact us at https://postlight.com/#contact-us', 'notice-error');
                     return;
                 }
 
@@ -323,12 +367,14 @@ function wmp_index()
                     data: {
                         nonce: $nonce,
                         action: "wmp_fetch_posts",
-                        fetch_posts_urls: $fetch_posts_urls
+                        fetch_posts_urls: $fetch_posts_urls,
+                        post_type: $post_type,
+                        post_status: $post_status
                     },
                     success: function (response) {
                         if (response.status === "success") {
                             //Return notice
-                            wmp_return_notice('Post(s) successfully fetched and created, additional details below:', 'notice-success');
+                            wmp_return_notice('Post(s) successfully fetched and created/updated, additional details below:', 'notice-success');
 
                             //Reset Vals
                             jQuery('#wmp_urls_field').val('');
@@ -350,9 +396,9 @@ function wmp_index()
                                 $counter++;
 
                                 //Fields
-                                var $wmp_post_link='<a class="wmp_post_fetched_view_link" href="/wp-admin/post.php?post='+$wmp_pid+'&action=edit" target="_blank">(View Post)</a>';
+                                var $wmp_post_link = '<a class="wmp_post_fetched_view_link" href="/wp-admin/post.php?post=' + $wmp_pid + '&action=edit" target="_blank">(View Post)</a>';
 
-                                $wmp_to_clone.find('.wmp_post_fetched_title').html($counter + '- '+$wmp_ptitle+ ' ' + $wmp_post_link);
+                                $wmp_to_clone.find('.wmp_post_fetched_title').html($counter + '- ' + $wmp_ptitle + ' ' + $wmp_post_link);
                                 $wmp_to_clone.find('.wmp_post_fetched_excerpt').html($wmp_pexcerpt);
                                 $wmp_to_clone.css('display', 'block');
                                 $wmp_to_clone.removeClass('wmp_generated_to_clone');
@@ -369,12 +415,12 @@ function wmp_index()
                             }, 800);
                         } else {
                             //Return notice
-                            wmp_return_notice('An error occurred, please refresh to try again or contact us at https://postlight.com/contact', 'notice-error');
+                            wmp_return_notice('An error occurred, please refresh to try again or contact us at https://postlight.com/#contact-us', 'notice-error');
                         }
                     },
                     error: function () {
                         //Return notice
-                        wmp_return_notice('An error occurred, please refresh to try again or contact us at https://postlight.com/contact', 'notice-error');
+                        wmp_return_notice('An error occurred, please refresh to try again or contact us at https://postlight.com/#contact-us', 'notice-error');
                     }
                 });
             });
@@ -484,8 +530,20 @@ function wmp_fetch_posts()
     }
     if ($_POST['action'] == "wmp_fetch_posts") {
         //Get values
-        $fetch_posts_urls = $_POST['fetch_posts_urls'];
+        $fetch_posts_urls = strip_tags($_POST['fetch_posts_urls']);
+        $fetch_post_type = strip_tags($_POST['post_type']);
+        $fetch_post_status = strip_tags($_POST['post_status']);
+
         if ($fetch_posts_urls) {
+            //Default values for vars
+            if (!$fetch_post_type) {
+                $fetch_post_type = 'post';
+            }
+
+            if (!$fetch_post_status) {
+                $fetch_post_status = 'publish';
+            }
+
             //Fetch URLs
             $fetch_posts_urls_arr = explode("\n", $fetch_posts_urls);
 
@@ -522,23 +580,56 @@ function wmp_fetch_posts()
                         $wmp_url = isset($wmp_data->url) ? $wmp_data->url : '';
                         $wmp_word_count = isset($wmp_data->word_count) ? $wmp_data->word_count : '';
 
-                        $wmpPostArgs = array(
-                            'post_title' => $wmp_title,
-                            'post_content' => $wmp_content,
-                            'post_status' => 'publish',
-                            'post_type' => 'post',
-                            'post_excerpt' => $wmp_excerpt,
+                        $wmp_title_sanitized = sanitize_title($wmp_title);
+
+                        //Check if post exists
+                        global $wpdb;
+
+                        $wmp_exists_query = $wpdb->prepare(
+                            "SELECT ID FROM $wpdb->posts WHERE `post_title` = %s AND `post_type` = '$fetch_post_type'",
+                            $wmp_title
                         );
+                        $wmpPostId = $wpdb->query($wmp_exists_query);
 
-                        $wmpPostId = wp_insert_post($wmpPostArgs);
+                        if ($wmpPostId) {
 
-                        if($wmpPostId){
+                            //Update if it is
+                            $wmpPostArgs = array(
+                                'ID' => $wmpPostId,
+                                'post_content' => $wmp_content,
+                                'post_excerpt' => $wmp_excerpt,
+                                'post_status' => $fetch_post_status,
+                            );
+                            wp_update_post($wmpPostArgs);
+
+                            //Update post meta
+                            update_post_meta($wmpPostId, 'wmp_date_published', $wmp_date_published);
+                            update_post_meta($wmpPostId, 'wmp_date_direction', $wmp_direction);
+                            update_post_meta($wmpPostId, 'wmp_domain', $wmp_domain);
+                            update_post_meta($wmpPostId, 'wmp_url', $wmp_url);
+                            update_post_meta($wmpPostId, 'wmp_word_count', $wmp_word_count);
+
+                        } else {
+                            //Create if it isn't
+                            $wmpPostArgs = array(
+                                'post_title' => $wmp_title,
+                                'post_content' => $wmp_content,
+                                'post_status' => $fetch_post_status,
+                                'post_type' => $fetch_post_type,
+                                'post_excerpt' => $wmp_excerpt,
+                            );
+
+                            $wmpPostId = wp_insert_post($wmpPostArgs);
+
+                            //Create post meta
                             add_post_meta($wmpPostId, 'wmp_date_published', $wmp_date_published, true);
                             add_post_meta($wmpPostId, 'wmp_date_direction', $wmp_direction, true);
                             add_post_meta($wmpPostId, 'wmp_domain', $wmp_domain, true);
                             add_post_meta($wmpPostId, 'wmp_url', $wmp_url, true);
                             add_post_meta($wmpPostId, 'wmp_word_count', $wmp_word_count, true);
+                        }
 
+                        if ($wmpPostId) {
                             $wmp_data_temp = [];
                             $wmp_data_temp['p_id'] = $wmpPostId;
                             $wmp_data_temp['p_data'] = $wmp_data;
