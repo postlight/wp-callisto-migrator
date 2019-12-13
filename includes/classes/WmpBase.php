@@ -14,7 +14,6 @@ if (!defined('ABSPATH')) {
 /** Exit if accessed directly */
 class WmpBase
 {
-    public $wmpSdk;
     public $hooks;
     public $dbTables;
     public $helpers;

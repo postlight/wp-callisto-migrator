@@ -35,7 +35,7 @@ function wmp_index()
                                     <span><?php esc_attr_e('Create WordPress posts from any other website', 'wpMercuryParser'); ?></span>
                                 </h2>
 
-                                <div class="inside">
+                                <div class="inside" id="wmp_to_scroll">
                                     <p><?php esc_attr_e(
                                             'Add external link(s) to start creating posts: (max 5 URLs per attempt)',
                                             'wpMercuryParser'
@@ -53,7 +53,7 @@ function wmp_index()
                                     <input
                                             id="wmp_fetch_posts"
                                             class="button-secondary" type="submit"
-                                            value="<?php esc_attr_e('Fetch And Preview Posts'); ?>"/>
+                                            value="<?php esc_attr_e('Fetch And Create Posts'); ?>"/>
 
                                     <div class="wmp_spinner spinner is-active" style="
                                 float:none;
@@ -64,6 +64,8 @@ function wmp_index()
                                 background-position:20px 0;">
                                     </div>
 
+
+                                    <br>
                                     <br>
 
                                     <div
@@ -88,9 +90,49 @@ function wmp_index()
                         </div>
                         <!-- .meta-box-sortables .ui-sortable -->
 
-                    </div>
-                    <!-- post-body-content -->
+                        <!-- generated-posts-content -->
+                        <div class="poststuff wmp_generated_posts" style="display: none">
 
+                            <h1><?php esc_attr_e('Fetched And Created Posts', 'wpMercuryParser'); ?></h1>
+
+                            <div class="post-body metabox-holder wmp_generated_to_clone" style="display: none">
+                                <!-- main content -->
+                                <div class="post-body-content">
+                                    <div class="meta-box-sortables">
+                                        <div class="postbox">
+                                            <button type="button"
+                                                    class="handlediv wmp_rotate wmp_post_toggle wmp_post_btn"
+                                                    aria-expanded="true">
+                                                <span class="screen-reader-text">Toggle panel</span>
+                                                <span class="toggle-indicator" aria-hidden="true"></span>
+                                            </button>
+                                            <!-- Toggle -->
+
+                                            <h2 class="wmp_post_fetched_title">
+                                                <span></span>
+                                            </h2>
+
+                                            <div class="inside wmp_post_fetched_excerpt" style="display: none">
+                                                <p></p>
+                                            </div>
+                                            <!-- .inside -->
+                                        </div>
+                                        <!-- .postbox -->
+                                    </div>
+                                    <!-- .meta-box-sortables .ui-sortable -->
+                                </div>
+                                <!-- post-body-content -->
+                            </div>
+
+                            <div class="wmp_generated_cloned_posts" style="display: none">
+
+                            </div>
+
+                            <br class="clear">
+                        </div>
+                        <!-- #poststuff -->
+
+                    </div>
 
                     <!-- sidebar -->
                     <div id="postbox-container-1" class="postbox-container">
@@ -286,13 +328,45 @@ function wmp_index()
                     success: function (response) {
                         if (response.status === "success") {
                             //Return notice
-                            wmp_return_notice('Post(s) successfully fetched, please preview it below before importing:', 'notice-success');
+                            wmp_return_notice('Post(s) successfully fetched and created, additional details below:', 'notice-success');
 
                             //Reset Vals
                             jQuery('#wmp_urls_field').val('');
 
                             //Enable btn
                             $this.removeClass('wmp_disabled');
+
+                            //Show fetched posts
+                            var $counter = 0;
+                            jQuery.each(response.wmp_fetch_data, function (index, res) {
+                                var $wmp_pid = res.p_id;
+                                var $wmp_ptitle = res.p_data.title;
+                                var $wmp_pexcerpt = res.p_data.content;
+
+                                //Clone preview from origin
+                                var $wmp_to_clone = jQuery('.wmp_generated_to_clone').clone();
+                                var $wmp_clone_container = jQuery('.wmp_generated_cloned_posts');
+
+                                $counter++;
+
+                                //Fields
+                                var $wmp_post_link='<a class="wmp_post_fetched_view_link" href="/wp-admin/post.php?post='+$wmp_pid+'&action=edit" target="_blank">(View Post)</a>';
+
+                                $wmp_to_clone.find('.wmp_post_fetched_title').html($counter + '- '+$wmp_ptitle+ ' ' + $wmp_post_link);
+                                $wmp_to_clone.find('.wmp_post_fetched_excerpt').html($wmp_pexcerpt);
+                                $wmp_to_clone.css('display', 'block');
+                                $wmp_to_clone.removeClass('wmp_generated_to_clone');
+                                $wmp_clone_container.append($wmp_to_clone);
+                                $wmp_clone_container.slideDown('fast');
+                            });
+
+                            //Show cont
+                            jQuery('.wmp_generated_posts').slideDown('fast');
+
+                            //Scroll to section
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery("#wmp_to_scroll").offset().top - 20
+                            }, 800);
                         } else {
                             //Return notice
                             wmp_return_notice('An error occurred, please refresh to try again or contact us at https://postlight.com/contact', 'notice-error');
@@ -305,38 +379,50 @@ function wmp_index()
                 });
             });
 
+            //Toggle fetched posts accordian
+            jQuery(document).on('click', '.wmp_post_toggle', function (e) {
+                e.preventDefault();
+
+                jQuery(this).closest('.postbox').find('.wmp_post_fetched_excerpt').toggle();
+                jQuery(this).toggleClass('wmp_rotate');
+            });
+
             //Helpers
             function wmp_reset_notices() {
                 //General Variables
                 var $notice = jQuery('.wmp_notice');
                 var $notice_alt = jQuery('.wmp_notice_alt');
                 var $spinner = jQuery('.wmp_spinner');
+                var $cloneCont = jQuery('.wmp_generated_posts');
+                var $clonePostst = jQuery('.wmp_generated_cloned_posts');
 
-                //Reset
+                //Reset Notices
                 $notice.find('p').html('');
                 $notice.removeClass('notice-error');
                 $notice.removeClass('notice-warning');
                 $notice.removeClass('notice-success');
-
 
                 $notice_alt.find('p').html('');
                 $notice_alt.removeClass('notice-error');
                 $notice_alt.removeClass('notice-warning');
                 $notice_alt.removeClass('notice-success');
 
+                //Reset clone stuff
+                $clonePostst.html('');
+
                 $notice.slideUp('fast');
-
                 $notice_alt.slideUp('fast');
-
+                $cloneCont.slideUp('fast');
                 $spinner.slideUp('fast');
+
             }
 
-            function wmp_return_notice($msg, $notice_type, $alt=false) {
+            function wmp_return_notice($msg, $notice_type, $alt = false) {
                 //General Variables
                 var $spinner = jQuery('.wmp_spinner');
                 var $notice = jQuery('.wmp_notice');
 
-                if($alt){
+                if ($alt) {
                     $notice = jQuery('.wmp_notice_alt');
                 }
 
@@ -344,7 +430,7 @@ function wmp_index()
                     $notice.find('p').html($msg);
                     $notice.addClass($notice_type);
                     $notice.slideDown('fast');
-                    if(!$alt){
+                    if (!$alt) {
                         $spinner.slideUp('fast');
                     }
                 }
@@ -365,7 +451,8 @@ function wmp_index()
                 var has_invalid_urls = false;
 
                 for (var $a = 0; typeof $splitval[$a] != 'undefined'; $a++) {
-                    if (wmp_validate_url($splitval[$a])) {
+                    //Check valid + duplicate URLs
+                    if (wmp_validate_url($splitval[$a]) && !$value.includes($splitval[$a])) {
                         if ($a > 0) $value += "\n";
                         $value += $splitval[$a];
                     } else {
@@ -379,7 +466,7 @@ function wmp_index()
                 //Check invalid URLs
                 if (has_invalid_urls) {
                     //Return notice
-                    wmp_return_notice('Your input contains invalid URL(s), it\'s been ignored', 'notice-warning',true);
+                    wmp_return_notice('Your input contains invalid or duplicate URL(s), it\'s been ignored', 'notice-warning', true);
                 }
 
             }
@@ -423,7 +510,42 @@ function wmp_fetch_posts()
                     $wmp_data = json_decode($wmp_ch_response);
                     curl_close($wmp_data);
 
-                    $fetch_posts_ret_data[] = $wmp_data;
+                    if (isset($wmp_data->title)) {
+
+                        // Insert post
+                        $wmp_title = isset($wmp_data->title) ? $wmp_data->title : '';
+                        $wmp_content = isset($wmp_data->content) ? $wmp_data->content : '';
+                        $wmp_excerpt = isset($wmp_data->excerpt) ? $wmp_data->excerpt : '';
+                        $wmp_date_published = isset($wmp_data->date_published) ? $wmp_data->date_published : '';
+                        $wmp_direction = isset($wmp_data->direction) ? $wmp_data->direction : '';
+                        $wmp_domain = isset($wmp_data->domain) ? $wmp_data->domain : '';
+                        $wmp_url = isset($wmp_data->url) ? $wmp_data->url : '';
+                        $wmp_word_count = isset($wmp_data->word_count) ? $wmp_data->word_count : '';
+
+                        $wmpPostArgs = array(
+                            'post_title' => $wmp_title,
+                            'post_content' => $wmp_content,
+                            'post_status' => 'publish',
+                            'post_type' => 'post',
+                            'post_excerpt' => $wmp_excerpt,
+                        );
+
+                        $wmpPostId = wp_insert_post($wmpPostArgs);
+
+                        if($wmpPostId){
+                            add_post_meta($wmpPostId, 'wmp_date_published', $wmp_date_published, true);
+                            add_post_meta($wmpPostId, 'wmp_date_direction', $wmp_direction, true);
+                            add_post_meta($wmpPostId, 'wmp_domain', $wmp_domain, true);
+                            add_post_meta($wmpPostId, 'wmp_url', $wmp_url, true);
+                            add_post_meta($wmpPostId, 'wmp_word_count', $wmp_word_count, true);
+
+                            $wmp_data_temp = [];
+                            $wmp_data_temp['p_id'] = $wmpPostId;
+                            $wmp_data_temp['p_data'] = $wmp_data;
+
+                            $fetch_posts_ret_data[] = $wmp_data_temp;
+                        }
+                    }
                 }
 
                 if (!empty($fetch_posts_ret_data)) {
