@@ -6,3 +6,9 @@
  * @version 1.0
  *
  */
+
+.wmp_page .wmp_disabled{
+    cursor: none;
+    pointer-events: none;
+    opacity: .6;
+}
