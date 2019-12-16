@@ -218,6 +218,12 @@ function wmp_index()
                                     </tr>
                                     <tr>
                                         <td class="row-title"><label for="tablecell"><?php esc_attr_e(
+                                                    'Excerpt', 'wpMercuryParser'
+                                                ); ?></label></td>
+                                        <td><?php esc_attr_e('Default', 'wpMercuryParser'); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-title"><label for="tablecell"><?php esc_attr_e(
                                                     'Featured Image', 'wpMercuryParser'
                                                 ); ?></label></td>
                                         <td><?php esc_attr_e('Default', 'wpMercuryParser'); ?></td>
@@ -234,21 +240,9 @@ function wmp_index()
                                                 ); ?></label></td>
                                         <td><?php esc_attr_e('Custom Field', 'wpMercuryParser'); ?></td>
                                     </tr>
-                                    <tr>
-                                        <td class="row-title"><label for="tablecell"><?php esc_attr_e(
-                                                    'Excerpt', 'wpMercuryParser'
-                                                ); ?></label></td>
-                                        <td><?php esc_attr_e('Custom Field', 'wpMercuryParser'); ?></td>
-                                    </tr>
                                     <tr class="alternate">
                                         <td class="row-title"><label for="tablecell"><?php esc_attr_e(
                                                     'Direction', 'wpMercuryParser'
-                                                ); ?></label></td>
-                                        <td><?php esc_attr_e('Custom Field', 'wpMercuryParser'); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="row-title"><label for="tablecell"><?php esc_attr_e(
-                                                    'Word Count', 'wpMercuryParser'
                                                 ); ?></label></td>
                                         <td><?php esc_attr_e('Custom Field', 'wpMercuryParser'); ?></td>
                                     </tr>
@@ -531,6 +525,9 @@ function wmp_fetch_posts()
         exit("Invalid request");
     }
     if ($_POST['action'] == "wmp_fetch_posts") {
+        //Init helper
+        $wmpHelpers = new WmpHelpers();
+
         //Get values
         $fetch_posts_urls = strip_tags($_POST['fetch_posts_urls']);
         $fetch_post_type = strip_tags($_POST['post_type']);
@@ -577,12 +574,10 @@ function wmp_fetch_posts()
                         $wmp_content = isset($wmp_data->content) ? $wmp_data->content : '';
                         $wmp_excerpt = isset($wmp_data->excerpt) ? $wmp_data->excerpt : '';
                         $wmp_date_published = isset($wmp_data->date_published) ? $wmp_data->date_published : '';
+                        $wmp_featured_image = isset($wmp_data->lead_image_url) ? $wmp_data->lead_image_url : '';
                         $wmp_direction = isset($wmp_data->direction) ? $wmp_data->direction : '';
                         $wmp_domain = isset($wmp_data->domain) ? $wmp_data->domain : '';
                         $wmp_url = isset($wmp_data->url) ? $wmp_data->url : '';
-                        $wmp_word_count = isset($wmp_data->word_count) ? $wmp_data->word_count : '';
-
-                        $wmp_title_sanitized = sanitize_title($wmp_title);
 
                         //Check if post exists
                         global $wpdb;
@@ -609,7 +604,6 @@ function wmp_fetch_posts()
                             update_post_meta($wmpPostId, 'wmp_date_direction', $wmp_direction);
                             update_post_meta($wmpPostId, 'wmp_domain', $wmp_domain);
                             update_post_meta($wmpPostId, 'wmp_url', $wmp_url);
-                            update_post_meta($wmpPostId, 'wmp_word_count', $wmp_word_count);
 
                         } else {
                             //Create if it isn't
@@ -628,12 +622,18 @@ function wmp_fetch_posts()
                             add_post_meta($wmpPostId, 'wmp_date_direction', $wmp_direction, true);
                             add_post_meta($wmpPostId, 'wmp_domain', $wmp_domain, true);
                             add_post_meta($wmpPostId, 'wmp_url', $wmp_url, true);
-                            add_post_meta($wmpPostId, 'wmp_word_count', $wmp_word_count, true);
                         }
 
                         if ($wmpPostId) {
+
+                            //Add and assign featured image
+                            if ($wmp_featured_image) {
+                                $add_featured_image = $wmpHelpers->wmp_fetch_add_featured_image($wmpPostId, $wmp_featured_image);
+                            }
+
                             $wmp_data_temp = [];
                             $wmp_data_temp['p_id'] = $wmpPostId;
+                            $wmp_data_temp['p_img'] = $add_featured_image;
                             $wmp_data_temp['p_data'] = $wmp_data;
 
                             $fetch_posts_ret_data[] = $wmp_data_temp;

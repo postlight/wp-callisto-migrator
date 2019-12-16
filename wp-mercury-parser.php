@@ -35,9 +35,17 @@ if (!defined('wmp_prefix')) {
 }
 /** Definitions end */
 
+/** Root DIR start */
+function wmp_get_plugin_dir() {
+    return plugin_dir_path( __FILE__ );
+}
+/** Root DIR end */
+
 /** Load plugin Start */
 require wmp_plugin_dir . '/includes/classes/WmpBase.php';
 global $wmp;
 $wmp = new WmpBase;
 $wmp->init();
 /** Load plugin End */
+
+
