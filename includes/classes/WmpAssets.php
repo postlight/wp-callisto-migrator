@@ -24,7 +24,13 @@ class WmpAssets extends WmpBase
              'toplevel_page_wmp_settings'
          ];
          if (in_array($current_page, $wmp_plugin_pages)) {
+             //Styles
              wp_enqueue_style('wmp_src_css', wmp_plugin_url . 'includes/assets/css/styles.css', array(), '1.0');
+
+             //Scripts
+             wp_enqueue_script( 'wmp_js_helpers', wmp_plugin_url . "includes/assets/js/helpers.js", array( 'jquery' ), '1.0', true );
+             wp_enqueue_script( 'wmp_js_scripts', wmp_plugin_url . "includes/assets/js/scripts.js", array( 'jquery' ), '1.0', true );
+
          }
     }
 
