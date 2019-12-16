@@ -39,7 +39,7 @@ function wmp_index()
                                     <span><?php esc_attr_e('Create WordPress posts from any other website', 'wpMercuryParser'); ?></span>
                                 </h2>
 
-                                <div class="inside" id="wmp_to_scroll">
+                                <div class="inside">
                                     <p><?php esc_attr_e(
                                             'Add external link(s) to start creating posts: (max 5 URLs per attempt)',
                                             'wpMercuryParser'
@@ -132,7 +132,7 @@ function wmp_index()
                         <!-- .meta-box-sortables .ui-sortable -->
 
                         <!-- generated-posts-content -->
-                        <div class="poststuff wmp_generated_posts" style="display: none">
+                        <div id="wmp_to_scroll" class="poststuff wmp_generated_posts" style="display: none">
 
                             <h1><?php esc_attr_e('Fetched And Created/Updated Posts', 'wpMercuryParser'); ?></h1>
 
@@ -385,7 +385,7 @@ function wmp_index()
                                 $counter++;
 
                                 //Fields
-                                var $wmp_edit_post_link='/wp-admin/post.php?post="'+$wmp_pid+'"&action=edit';
+                                var $wmp_edit_post_link='/wp-admin/post.php?post='+$wmp_pid+'&action=edit';
                                 var $wmp_post_link = '<a class="wmp_post_fetched_view_link" href="'+$wmp_edit_post_link+'" target="_blank">(View Post)</a>';
 
                                 $wmp_to_clone.find('.wmp_post_fetched_title').html($counter + '- ' + $wmp_ptitle + ' ' + $wmp_post_link);
