@@ -413,8 +413,15 @@ function wmp_index()
                             jQuery('html, body').animate({
                                 scrollTop: jQuery("#wmp_to_scroll").offset().top - 20
                             }, 800);
+                        } else if (response.status === 'warning') {
+                            if (response.error_type === 'empty_invalid_api_response') {
+                                //Return notice
+                                wmp_return_notice('Your custom endpoint didn\'t return any data, are you sure it\'s setup correctly?', 'notice-warning');
+                            } else {
+                                //Return notice
+                                wmp_return_notice('Couldn\'t fetch data from entered URl(s)', 'notice-warning');
+                            }
                         } else {
-                            //Return notice
                             wmp_return_notice('An error occurred, please refresh to try again or contact us at https://postlight.com/#contact-us', 'notice-error');
                         }
                     },
@@ -645,7 +652,11 @@ function wmp_fetch_posts()
                     $result['wmp_fetch_data'] = $fetch_posts_ret_data;
                 } else {
                     $result['status'] = "warning";
-                    $result['error_type'] = "empty_api_response";
+                    if (wmp_custom_endpoint) {
+                        $result['error_type'] = "empty_invalid_api_response";
+                    } else {
+                        $result['error_type'] = "empty_api_response";
+                    }
                 }
             } else {
                 $result['status'] = "error";

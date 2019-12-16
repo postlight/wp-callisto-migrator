@@ -68,6 +68,7 @@ class WmpPages extends WmpBase
         ?>
         <div class="wrap">
             <h1>WP Mercury API Settings</h1>
+            <?php settings_errors(); ?>
             <form method="post" action="options.php">
                 <?php
                 settings_fields( 'wmp_settings_group' );
