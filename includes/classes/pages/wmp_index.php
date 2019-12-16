@@ -385,8 +385,8 @@ function wmp_index()
                                 $counter++;
 
                                 //Fields
-                                var $wmp_edit_post_link='/wp-admin/post.php?post='+$wmp_pid+'&action=edit';
-                                var $wmp_post_link = '<a class="wmp_post_fetched_view_link" href="'+$wmp_edit_post_link+'" target="_blank">(View Post)</a>';
+                                var $wmp_edit_post_link = '/wp-admin/post.php?post=' + $wmp_pid + '&action=edit';
+                                var $wmp_post_link = '<a class="wmp_post_fetched_view_link" href="' + $wmp_edit_post_link + '" target="_blank">(View Post)</a>';
 
                                 $wmp_to_clone.find('.wmp_post_fetched_title').html($counter + '- ' + $wmp_ptitle + ' ' + $wmp_post_link);
                                 $wmp_to_clone.find('.wmp_post_fetched_excerpt').html($wmp_pexcerpt);
@@ -589,7 +589,9 @@ function wmp_fetch_posts()
                         );
                         $wmpPostId = $wpdb->query($wmp_exists_query);
 
-                        if ($wmpPostId) {
+                        if (!empty($wmpPostId['ID'])) {
+
+                            $wmpPostId = $wmpPostId['ID'];
 
                             //Update if it is
                             $wmpPostArgs = array(
