@@ -1,8 +1,8 @@
 # WP Mercury Parser
-Create WordPress posts from any other website
+Create WordPress posts using Mercury Parser API
 
 ## How it works
-WP Mercury Parser allows creating WordPress posts by importing content from other websites
+WP Mercury Parser allows creating WordPress posts by importing content from other websites using Mercury Parser API
 
 ## Features
 1. Imports 5 URLs per batch
