@@ -60,7 +60,7 @@ function wmp_index()
                                     if (!empty($wmp_post_types)) {
                                         ?>
                                         <p>
-                                            <b>Posts Type (create posts for):</b>
+                                            <b>Posts Type:</b>
                                         </p>
                                         <select id="wmp_post_type">
                                             <option selected="selected" value="post">Post (default)</option>

@@ -28,7 +28,11 @@ if (!defined('wmp_prefix')) {
 
     define('wmp_mercury_parser_logs_table', $wpdb->prefix . 'wp_mercury_parser_logs');
 
-    define('wmp_mercury_parser_endpoint','https://qlcdg90ss7.execute-api.us-east-1.amazonaws.com/dev/parser');
+    if (isset(get_option('wmp_settings_api_endpoint')['wmp_settings_api_endpoint_field']) && get_option('wmp_settings_api_endpoint')['wmp_settings_api_endpoint_field']) {
+        define('wmp_mercury_parser_endpoint', get_option('wmp_settings_api_endpoint')['wmp_settings_api_endpoint_field']);
+    } else {
+        define('wmp_mercury_parser_endpoint', 'https://qlcdg90ss7.execute-api.us-east-1.amazonaws.com/dev/parser');
+    }
 }
 /** Definitions end */
 
