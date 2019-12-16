@@ -35,6 +35,78 @@ class WmpHelpers extends WmpBase
         }
     }
 
+    public function wmp_fetch_post_data($fetch_posts_url)
+    {
+        $genStatus = [];
+
+        if ($fetch_posts_url) {
+            if (function_exists('curl_init')) {
+                $wmp_dataArr = ['url' => $fetch_posts_url];
+
+                $wmp_ch = curl_init();
+                $wmp_data = http_build_query($wmp_dataArr);
+                $wmp_get_url = wmp_mercury_parser_endpoint . "?" . $wmp_data;
+                curl_setopt($wmp_ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+                curl_setopt($wmp_ch, CURLOPT_FOLLOWLOCATION, TRUE);
+                curl_setopt($wmp_ch, CURLOPT_RETURNTRANSFER, TRUE);
+                curl_setopt($wmp_ch, CURLOPT_URL, $wmp_get_url);
+                curl_setopt($wmp_ch, CURLOPT_TIMEOUT, 80);
+
+                $wmp_ch_response = curl_exec($wmp_ch);
+                $wmp_data = json_decode($wmp_ch_response);
+                curl_close($wmp_data);
+
+                if (!empty($wmp_data)) {
+                    $genStatus['status'] = 'success';
+                    $genStatus['data'] = $wmp_data;
+                } else {
+                    $genStatus['status'] = 'error';
+                    $genStatus['action'] = 'missing_data';
+                }
+            } else {
+                $genStatus['status'] = 'error';
+                $genStatus['action'] = 'missing_curl';
+            }
+        } else {
+            $genStatus['status'] = 'error';
+            $genStatus['action'] = 'missing_param';
+        }
+
+        return $genStatus;
+    }
+
+    public function wmp_create_update_posts_meta($post_id, $meta_key, $meta_value)
+    {
+        $genStatus = [];
+        if ($post_id && $meta_key && $meta_value) {
+            //Check existing meta data
+            $wmp_ex_md = get_post_meta($post_id, $meta_key, true);
+            $wmp_ex_type = '';
+            if ($wmp_ex_md) {
+                //Update post meta
+                $wmp_action_status = update_post_meta($post_id, $meta_key, $meta_value);
+                $wmp_ex_type = 'update';
+            } else {
+                //Create post meta
+                $wmp_action_status = add_post_meta($post_id, $meta_key, $meta_value, true);
+                $wmp_ex_type = 'create';
+            }
+
+            if ($wmp_action_status) {
+                $genStatus['status'] = 'success';
+                $genStatus['type'] = $wmp_ex_type;
+            } else {
+                $genStatus['status'] = 'error';
+                $genStatus['action'] = 'exec_error';
+                $genStatus['type'] = $wmp_ex_type;
+            }
+
+        } else {
+            $genStatus['status'] = 'error';
+            $genStatus['action'] = 'missing_param';
+        }
+    }
+
     public function wmp_fetch_add_featured_image($post_id, $thumbnail)
     {
         $genStatus = [];
