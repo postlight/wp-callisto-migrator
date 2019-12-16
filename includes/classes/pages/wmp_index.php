@@ -16,7 +16,6 @@ function wmp_index()
         'public' => true,
         '_builtin' => false,
     ], 'names', 'and');
-
     ?>
     <div class="wmp_page wmp_index">
         <div class="wrap">

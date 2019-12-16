@@ -69,11 +69,11 @@ class WmpAjax extends WmpBase
                                 "SELECT ID FROM $wpdb->posts WHERE `post_title` = %s AND `post_type` = '$fetch_post_type'",
                                 $wmp_title
                             );
-                            $wmpPostId = $wpdb->query($wmp_exists_query);
+                            $wmpPostId = $wpdb->get_results($wmp_exists_query);
 
-                            if (!empty($wmpPostId['ID'])) {
+                            if (isset($wmpPostId[0]->ID)) {
 
-                                $wmpPostId = $wmpPostId['ID'];
+                                $wmpPostId = $wmpPostId[0]->ID;
 
                                 //Update if it is
                                 $wmpPostArgs = array(
@@ -101,18 +101,19 @@ class WmpAjax extends WmpBase
 
                                 //Add and assign featured image
                                 if ($wmp_featured_image) {
-                                    $add_featured_image = $wmpHelpers->wmp_fetch_add_featured_image($wmpPostId, $wmp_featured_image);
+                                    $wmpHelpers->wmp_fetch_add_featured_image($wmpPostId, $wmp_featured_image);
                                 }
 
                                 //Create/Update Posts Meta
-                                $wmpHelpers->wmp_create_update_posts_meta($wmpPostId,'wmp_date_published',$wmp_date_published);
-                                $wmpHelpers->wmp_create_update_posts_meta($wmpPostId,'wmp_date_direction',$wmp_direction);
-                                $wmpHelpers->wmp_create_update_posts_meta($wmpPostId,'wmp_domain',$wmp_domain);
-                                $wmpHelpers->wmp_create_update_posts_meta($wmpPostId,'wmp_url',$wmp_url);
+                                $wmpHelpers->wmp_create_update_posts_meta($wmpPostId, 'wmp_date_published', $wmp_date_published);
+                                $wmpHelpers->wmp_create_update_posts_meta($wmpPostId, 'wmp_date_direction', $wmp_direction);
+                                $wmpHelpers->wmp_create_update_posts_meta($wmpPostId, 'wmp_domain', $wmp_domain);
+                                $wmpHelpers->wmp_create_update_posts_meta($wmpPostId, 'wmp_url', $wmp_url);
 
                                 $wmp_data_temp = [];
                                 $wmp_data_temp['p_id'] = $wmpPostId;
-                                $wmp_data_temp['p_data'] = $wmp_data;
+                                $wmp_data_temp['p_data'] = $wmp_data['data'];
+                                $wmp_data_temp['p_test'] = $wmpPostId;
 
                                 $fetch_posts_ret_data[] = $wmp_data_temp;
                             }
