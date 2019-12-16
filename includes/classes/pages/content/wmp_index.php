@@ -10,7 +10,6 @@
 
 function wmp_index()
 {
-    $wmpHelper = new WmpHelpers();
     $wmp_fetch_posts_nonce = wp_create_nonce("wmp_fetch_posts");
     $wmp_fetch_posts_ajax_url = admin_url('admin-ajax.php?action=wmp_fetch_posts');
     $wmp_post_types = get_post_types([
@@ -308,10 +307,6 @@ function wmp_index()
 
             jQuery('#wmp_fetch_posts').on('click', function (e) {
                 e.preventDefault();
-
-                //General variables
-                var $notice = jQuery('.wmp_notice');
-                var $spinner = jQuery('.wmp_spinner');
 
                 //Reset
                 wmp_reset_notices();

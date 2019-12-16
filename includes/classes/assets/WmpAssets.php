@@ -21,8 +21,7 @@ class WmpAssets extends WmpBase
          $current_page = get_current_screen()->base;
          $wmp_plugin_pages = [
              'toplevel_page_wmp_index',
-             'toplevel_page_wmp_settings',
-             'wmp_page_logs',
+             'toplevel_page_wmp_settings'
          ];
          if (in_array($current_page, $wmp_plugin_pages)) {
              wp_enqueue_style('wmp_src_css', wmp_plugin_url . 'includes/assets/css/styles.css', array(), '1.0');

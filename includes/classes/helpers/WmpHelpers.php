@@ -34,43 +34,4 @@ class WmpHelpers extends WmpBase
             return get_current_user_id();
         }
     }
-
-    public function wmp_insert_log($args)
-    {
-        $genStatus = [];
-
-        if (is_array($args)) {
-            global $wpdb;
-
-            $createLog = $wpdb->insert(
-                wmp_logs_table,
-                array(
-                    'action' => $args['action'],
-                    'post_type' => $args['post_type'],
-                    'post_id' => $args['post_id'],
-                    'status' => $args['status'],
-                    'created_by' => $this->wmp_get_current_user_id(),
-                    'created_at' => $this->wmp_get_current_date_time(),
-                )
-            );
-
-            if ($createLog) {
-                $genStatus['status'] = 'success';
-                $genStatus['action'] = 'insert';
-            } else {
-                $genStatus['status'] = 'fail';
-                $genStatus['action'] = 'insert';
-            }
-
-            $genStatus['obj'] = $createLog;
-            $genStatus['insert_log_id'] = $wpdb->insert_id;
-
-        } else {
-            $genStatus['status'] = 'fail';
-            $genStatus['action'] = 'field_check';
-            $genStatus['obj'] = $args;
-        }
-
-        return $genStatus;
-    }
 }

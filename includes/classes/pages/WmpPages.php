@@ -22,7 +22,6 @@ class WmpPages extends WmpBase
         $capability = "manage_options";
         add_menu_page("Mercury Parser", "Mercury Parser", $capability, "wmp_index", "wmp_index", "dashicons-category", null);
         add_submenu_page("wmp_index", "Settings", "Settings", $capability, "wmp_settings", array($this, 'wmp_settings_cb'));
-        // add_submenu_page("wmp_index", "Export Logs", "Export Logs", $capability, "wmp_logs", "wmp_logs");
     }
 
     /** Option page fields */
@@ -84,7 +83,6 @@ class WmpPages extends WmpBase
     {
         /** Require pages */
         require wmp_plugin_dir . 'includes/classes/pages/content/wmp_index.php';
-        // require wmp_plugin_dir . 'includes/classes/pages/content/wmp_logs.php';
 
         add_action("admin_menu", array(&$this, "wmp_pages"));
 
