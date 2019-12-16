@@ -82,7 +82,7 @@ class WmpPages extends WmpBase
     public function __construct()
     {
         /** Require pages */
-        require wmp_plugin_dir . 'includes/classes/pages/content/wmp_index.php';
+        require wmp_plugin_dir . 'includes/classes/pages/wmp_index.php';
 
         add_action("admin_menu", array(&$this, "wmp_pages"));
 
