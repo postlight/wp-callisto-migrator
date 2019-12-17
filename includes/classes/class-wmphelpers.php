@@ -181,18 +181,12 @@ class WmpHelpers extends WmpBase {
 	 * @return string
 	 **/
 	public function wmp_url_get_contents( $url ) {
-		if ( ! function_exists( 'curl_init' ) ) {
-			die( 'CURL is not installed!' );
+		if ( $url ) {
+			$wmp_request = wp_remote_get( $url );
+			if ( ! is_wp_error( $wmp_request ) ) {
+				return wp_remote_retrieve_body( $wmp_request );
+			}
 		}
-        //phpcs:disable
-		$ch_1 = curl_init();
-		curl_setopt( $ch_1, CURLOPT_URL, $url );
-		curl_setopt( $ch_1, CURLOPT_RETURNTRANSFER, true );
-		$output_1 = curl_exec( $ch_1 );
-		curl_close( $ch_1 );
-
-        //phpcs:enable
-		return $output_1;
 	}
 
 	/**
