@@ -28,34 +28,21 @@ class WmpHelpers extends WmpBase {
 		$gen_status = array();
 
 		if ( $fetch_posts_url ) {
-			if ( function_exists( 'curl_init' ) ) {
-				$wmp_data_arr = array( 'url' => $fetch_posts_url );
+			// Fetch post content from Mercury.
+			$wmp_data    = array();
+			$wmp_request = wp_remote_get( WMP_MERCURY_PARSER_ENDPOINT . '?url=' . $fetch_posts_url );
+			if ( ! is_wp_error( $wmp_request ) ) {
+				$wmp_request_body = wp_remote_retrieve_body( $wmp_request );
 
-				//phpcs:disable
-				$wmp_ch      = curl_init();
-				$wmp_data    = http_build_query( $wmp_data_arr );
-				$wmp_get_url = WMP_MERCURY_PARSER_ENDPOINT . '?' . $wmp_data;
-				curl_setopt( $wmp_ch, CURLOPT_SSL_VERIFYPEER, false );
-				curl_setopt( $wmp_ch, CURLOPT_FOLLOWLOCATION, true );
-				curl_setopt( $wmp_ch, CURLOPT_RETURNTRANSFER, true );
-				curl_setopt( $wmp_ch, CURLOPT_URL, $wmp_get_url );
-				curl_setopt( $wmp_ch, CURLOPT_TIMEOUT, 80 );
+				$wmp_data = json_decode( $wmp_request_body );
+			}
 
-				$wmp_ch_response = curl_exec( $wmp_ch );
-				$wmp_data        = json_decode( $wmp_ch_response );
-				curl_close( $wmp_data );
-
-				//phpcs:enable
-				if ( ! empty( $wmp_data ) ) {
-					$gen_status['status'] = 'success';
-					$gen_status['data']   = $wmp_data;
-				} else {
-					$gen_status['status'] = 'error';
-					$gen_status['action'] = 'missing_data';
-				}
+			if ( ! empty( $wmp_data ) ) {
+				$gen_status['status'] = 'success';
+				$gen_status['data']   = $wmp_data;
 			} else {
 				$gen_status['status'] = 'error';
-				$gen_status['action'] = 'missing_curl';
+				$gen_status['action'] = 'missing_data';
 			}
 		} else {
 			$gen_status['status'] = 'error';
