@@ -6,7 +6,7 @@
  * @developer Postlight <http://postlight.com>
  * @version   1.0
  */
-function Wmp_index() { // phpcs:ignore
+function wmp_index() {
 	$wmp_fetch_posts_nonce    = wp_create_nonce( 'wmp_fetch_posts' );
 	$wmp_fetch_posts_ajax_url = admin_url( 'admin-ajax.php?action=wmp_fetch_posts' );
 	$wmp_post_types           = get_post_types(

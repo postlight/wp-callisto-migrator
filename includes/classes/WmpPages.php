@@ -20,7 +20,7 @@ class WmpPages extends WmpBase { //phpcs:ignore
 	 */
 	public function wmp_pages() {
 		$capability = 'manage_options';
-		add_menu_page( 'Mercury Parser', 'Mercury Parser', $capability, 'wmp_index', 'Wmp_index', 'dashicons-category', null );
+		add_menu_page( 'Mercury Parser', 'Mercury Parser', $capability, 'wmp_index', 'wmp_index', 'dashicons-category', null );
 		add_submenu_page( 'wmp_index', 'Settings', 'Settings', $capability, 'wmp_settings', array( $this, 'wmp_settings_cb' ) );
 	}
 
