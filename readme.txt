@@ -21,4 +21,3 @@ Mercury Parser for WordPress
 
 = 1.0 =
 * Initial release
-
