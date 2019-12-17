@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WmpAssets Class.
+ * Assets Class.
  */
 class WmpAssets extends WmpBase {
 	/**

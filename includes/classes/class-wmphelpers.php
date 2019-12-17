@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WmpHelpers Class.
+ * Helpers Class.
  */
 class WmpHelpers extends WmpBase {
 	/**

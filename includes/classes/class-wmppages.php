@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WmpPages Class.
+ * Pages Class.
  */
 class WmpPages extends WmpBase {
 
@@ -106,7 +106,7 @@ class WmpPages extends WmpBase {
 		/**
 		 * Require pages
 		 */
-		include WMP_PLUGIN_DIR . 'includes/classes/pages/wmp_index.php';
+		include WMP_PLUGIN_DIR . 'includes/classes/pages/wmp-index.php';
 
 		add_action( 'admin_menu', array( &$this, 'wmp_pages' ) );
 

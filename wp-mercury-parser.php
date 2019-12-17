@@ -44,7 +44,7 @@ if ( ! defined( 'WMP_PREFIX' ) ) {
 /**
  * Load plugin Start
  */
-require WMP_PLUGIN_DIR . '/includes/classes/WmpBase.php';
+require WMP_PLUGIN_DIR . '/includes/classes/class-wmpbase.php';
 global $wmp;
 $wmp = new WmpBase();
 $wmp->init();

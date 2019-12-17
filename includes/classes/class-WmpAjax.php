@@ -2,7 +2,7 @@
 /**
  * Ajax Functions
  *
- * @package   WmpAjax
+ * @package   class-WmpAjax
  * @developer Postlight <http://postlight.com>
  * @version   1.0
  */
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WmpAjax Class.
+ * Ajax Class.
  */
 class WmpAjax extends WmpBase {
 	/**

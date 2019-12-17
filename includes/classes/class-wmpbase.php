@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WmpBase Main Class.
+ * Base Main Class.
  */
 class WmpBase {
 	/**
@@ -64,10 +64,10 @@ class WmpBase {
 		/**
 		 * Require classes
 		 */
-		include WMP_PLUGIN_DIR . 'includes/classes/WmpHelpers.php';
-		include WMP_PLUGIN_DIR . 'includes/classes/WmpAssets.php';
-		include WMP_PLUGIN_DIR . 'includes/classes/WmpAjax.php';
-		include WMP_PLUGIN_DIR . 'includes/classes/WmpPages.php';
+		include WMP_PLUGIN_DIR . 'includes/classes/class-wmphelpers.php';
+		include WMP_PLUGIN_DIR . 'includes/classes/class-wmpassets.php';
+		include WMP_PLUGIN_DIR . 'includes/classes/class-wmpajax.php';
+		include WMP_PLUGIN_DIR . 'includes/classes/class-wmppages.php';
 
 		/**
 		 * Init classes
