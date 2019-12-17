@@ -12,10 +12,11 @@ WP Mercury Parser allows creating WordPress posts by importing content from othe
 5. Adds the ability of adding custom end points for the Mercury Parser API
 6. Updates post fields of existing URLs
 
-## Future Releases
-1. Preview posts before creation
-2. Individual or bulk create posts after preview
-3. Logging with ability to update posts
+## Suggested next steps
+1. Preview posts (with title, content, featured image and custom fields) before creation
+2. Select or bulk create posts after preview
+3. Import logging with ability to update posts
+4. UTF support for imported URLs
 
 ## Test URLs
 - https://postlight.com/trackchanges/mercury-goes-open-source
