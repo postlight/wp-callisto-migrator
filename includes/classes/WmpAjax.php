@@ -65,21 +65,12 @@ class WmpAjax extends WmpBase {
 							$wmp_domain         = isset( $wmp_data['data']->domain ) ? $wmp_data['data']->domain : '';
 							$wmp_url            = isset( $wmp_data['data']->url ) ? $wmp_data['data']->url : '';
 
+							$wmp_update_post = array();
+
 							// Check if post exists.
-							global $wpdb;
+							$wmp_post_id = post_exists( $wmp_title, '', '', $fetch_post_type );
 
-							$wmp_exists_query = $wpdb->prepare(
-								"SELECT ID FROM $wpdb->posts WHERE `post_title` = %s AND `post_type` = %s",
-								$wmp_title,
-								$fetch_post_type
-							);
-                            // phpcs:disable
-							$wmp_post_id      = $wpdb->get_results( $wmp_exists_query );
-                            // phpcs:enable
-
-							if ( isset( $wmp_post_id[0]->ID ) ) {
-
-								$wmp_post_id = $wmp_post_id[0]->ID;
+							if ( $wmp_post_id ) {
 
 								// Update if it is.
 								$wmp_post_args = array(
@@ -89,6 +80,9 @@ class WmpAjax extends WmpBase {
 									'post_status'  => $fetch_post_status,
 								);
 								wp_update_post( $wmp_post_args );
+
+								$wmp_update_post['p_id']   = $wmp_post_id;
+								$wmp_update_post['update'] = true;
 
 							} else {
 								// Create it if it isn't.
@@ -101,6 +95,8 @@ class WmpAjax extends WmpBase {
 								);
 
 								$wmp_post_id = wp_insert_post( $wmp_post_args );
+
+								$wmp_update_post['update'] = false;
 							}
 
 							if ( $wmp_post_id ) {
@@ -116,10 +112,10 @@ class WmpAjax extends WmpBase {
 								$wmp_helpers->wmp_create_update_posts_meta( $wmp_post_id, 'wmp_domain', $wmp_domain );
 								$wmp_helpers->wmp_create_update_posts_meta( $wmp_post_id, 'wmp_url', $wmp_url );
 
-								$wmp_data_temp           = array();
-								$wmp_data_temp['p_id']   = $wmp_post_id;
-								$wmp_data_temp['p_data'] = $wmp_data['data'];
-								$wmp_data_temp['p_test'] = $wmp_post_id;
+								$wmp_data_temp                  = array();
+								$wmp_data_temp['p_id']          = $wmp_post_id;
+								$wmp_data_temp['p_data']        = $wmp_data['data'];
+								$wmp_data_temp['p_update_post'] = $wmp_update_post;
 
 								$fetch_posts_ret_data[] = $wmp_data_temp;
 							}
