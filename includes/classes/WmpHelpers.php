@@ -2,38 +2,19 @@
 /**
  * Helpers
  *
- * @package WmpHelpers
- * @developer  Postlight <http://postlight.com>
- * @version 1.0
- *
+ * @package   WmpHelpers
+ * @developer Postlight <http://postlight.com>
+ * @version   1.0
  */
 if (!defined('ABSPATH')) {
     exit;
 }
 
-/** Exit if accessed directly */
+/**
+ * Exit if accessed directly
+ */
 class WmpHelpers extends WmpBase
 {
-    public function wmp_get_current_date_time()
-    {
-        date_default_timezone_set(wmp_default_timezone);
-
-        return date('Y-m-d H:i:s');
-    }
-
-    public function wmp_get_current_raw_date()
-    {
-        date_default_timezone_set(wmp_default_timezone);
-
-        return date('Y-m-d');
-    }
-
-    public function wmp_get_current_user_id()
-    {
-        if (get_current_user_id()) {
-            return get_current_user_id();
-        }
-    }
 
     public function wmp_fetch_post_data($fetch_posts_url)
     {
@@ -45,10 +26,10 @@ class WmpHelpers extends WmpBase
 
                 $wmp_ch = curl_init();
                 $wmp_data = http_build_query($wmp_dataArr);
-                $wmp_get_url = wmp_mercury_parser_endpoint . "?" . $wmp_data;
-                curl_setopt($wmp_ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-                curl_setopt($wmp_ch, CURLOPT_FOLLOWLOCATION, TRUE);
-                curl_setopt($wmp_ch, CURLOPT_RETURNTRANSFER, TRUE);
+                $wmp_get_url = WMP_MERCURY_PARSER_ENDPOINT . "?" . $wmp_data;
+                curl_setopt($wmp_ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($wmp_ch, CURLOPT_FOLLOWLOCATION, true);
+                curl_setopt($wmp_ch, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($wmp_ch, CURLOPT_URL, $wmp_get_url);
                 curl_setopt($wmp_ch, CURLOPT_TIMEOUT, 80);
 

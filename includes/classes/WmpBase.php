@@ -2,16 +2,17 @@
 /**
  * Base
  *
- * @package WmpBase
- * @developer  Postlight <http://postlight.com>
- * @version 1.0
- *
+ * @package   WmpBase
+ * @developer Postlight <http://postlight.com>
+ * @version   1.0
  */
 if (!defined('ABSPATH')) {
     exit;
 }
 
-/** Exit if accessed directly */
+/**
+ * Exit if accessed directly
+ */
 class WmpBase
 {
     public $helpers;
@@ -19,20 +20,26 @@ class WmpBase
     public $ajax;
     public $pages;
 
-    /** Required for extended classes to work */
+    /**
+     * Required for extended classes to work
+     */
     public function __construct()
     {
     }
 
     public function init()
     {
-        /** Require classes */
-        require wmp_plugin_dir . 'includes/classes/WmpHelpers.php';
-        require wmp_plugin_dir . 'includes/classes/WmpAssets.php';
-        require wmp_plugin_dir . 'includes/classes/WmpAjax.php';
-        require wmp_plugin_dir . 'includes/classes/WmpPages.php';
+        /**
+         * Require classes
+         */
+        include WMP_PLUGIN_DIR . 'includes/classes/WmpHelpers.php';
+        include WMP_PLUGIN_DIR . 'includes/classes/WmpAssets.php';
+        include WMP_PLUGIN_DIR . 'includes/classes/WmpAjax.php';
+        include WMP_PLUGIN_DIR . 'includes/classes/WmpPages.php';
 
-        /** Init classes */
+        /**
+         * Init classes
+         */
         $this->helpers = new WmpHelpers();
         $this->assets = new WmpAssets();
         $this->ajax = new WmpAjax();

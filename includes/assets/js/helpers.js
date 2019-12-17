@@ -1,5 +1,6 @@
 //Helpers functions
-function wmp_reset_notices() {
+function wmp_reset_notices()
+{
     //General Variables
     var $notice = jQuery('.wmp_notice');
     var $notice_alt = jQuery('.wmp_notice_alt');
@@ -25,10 +26,10 @@ function wmp_reset_notices() {
     $notice_alt.slideUp('fast');
     $cloneCont.slideUp('fast');
     $spinner.slideUp('fast');
-
 }
 
-function wmp_return_notice($msg, $notice_type, $alt = false) {
+function wmp_return_notice($msg, $notice_type, $alt = false)
+{
     //General Variables
     var $spinner = jQuery('.wmp_spinner');
     var $notice = jQuery('.wmp_notice');
@@ -47,16 +48,19 @@ function wmp_return_notice($msg, $notice_type, $alt = false) {
     }
 }
 
-function wmp_show_spinner() {
+function wmp_show_spinner()
+{
     var $spinner = jQuery('.wmp_spinner');
     $spinner.slideDown('fast');
 }
 
-function wmp_validate_url(url) {
+function wmp_validate_url(url)
+{
     return /^(https?|s?ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(url);
 }
 
-function wmp_verify_urls() {
+function wmp_verify_urls()
+{
     var $value = '';
     var $splitval = jQuery('#wmp_urls_field').val().split("\n");
     var has_invalid_urls = false;
@@ -64,7 +68,9 @@ function wmp_verify_urls() {
     for (var $a = 0; typeof $splitval[$a] != 'undefined'; $a++) {
         //Check valid + duplicate URLs
         if (wmp_validate_url($splitval[$a]) && !$value.includes($splitval[$a])) {
-            if ($a > 0) $value += "\n";
+            if ($a > 0) {
+                $value += "\n";
+            }
             $value += $splitval[$a];
         } else {
             has_invalid_urls = true;
@@ -79,5 +85,4 @@ function wmp_verify_urls() {
         //Return notice
         wmp_return_notice('Your input contains invalid or duplicate URL(s), it\'s been ignored', 'notice-warning', true);
     }
-
 }

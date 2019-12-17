@@ -2,20 +2,22 @@
 /**
  * Main page
  *
- * @package Wmp
+ * @package   Wmp
  * @developer Postlight <http://postlight.com>
- * @version 1.0
- *
+ * @version   1.0
  */
-
-function wmp_index()
+function Wmp_index()
 {
-    $wmp_fetch_posts_nonce = wp_create_nonce("wmp_fetch_posts");
+    $wmp_fetch_posts_nonce = wp_create_nonce('wmp_fetch_posts');
     $wmp_fetch_posts_ajax_url = admin_url('admin-ajax.php?action=wmp_fetch_posts');
-    $wmp_post_types = get_post_types([
-        'public' => true,
-        '_builtin' => false,
-    ], 'names', 'and');
+    $wmp_post_types = get_post_types(
+        array(
+            'public' => true,
+            '_builtin' => false,
+        ),
+        'names',
+        'and'
+    );
     ?>
     <div class="wmp_page wmp_index">
         <div class="wrap">
@@ -35,21 +37,35 @@ function wmp_index()
                             <div class="postbox">
 
                                 <h2>
-                                    <span><?php esc_attr_e('Create WordPress posts from any other website', 'wpMercuryParser'); ?></span>
+                                    <span>
+                                        <?php
+                                        esc_attr_e(
+                                            'Create WordPress posts 
+                                                from any other website',
+                                            'wpMercuryParser'
+                                        );
+                                        ?>
+                                    </span>
                                 </h2>
 
                                 <div class="inside">
-                                    <p><?php esc_attr_e(
-                                            'Add external link(s) to start creating posts: (max 5 URLs per attempt)',
+                                    <p>
+                                        <?php
+                                        esc_attr_e(
+                                            'Add external link(s)
+                                         to start creating posts: 
+                                        (max 5 URLs per attempt)',
                                             'wpMercuryParser'
-                                        ); ?></p>
+                                        );
+                                        ?>
+                                    </p>
 
                                     <input type="hidden" id="wmp_fetch_posts_nonce"
                                            value="<?php echo $wmp_fetch_posts_nonce; ?>">
                                     <input type="hidden" id="wmp_fetch_posts_ajax_url"
                                            value="<?php echo $wmp_fetch_posts_ajax_url; ?>">
 
-                                    <textarea id="wmp_urls_field" name="" cols="80" rows="10"
+                                    <textarea id="wmp_urls_field" name="wmp_urls_field" cols="80" rows="10"
                                               class="wmp_urls"></textarea>
 
                                     <br>
@@ -181,9 +197,14 @@ function wmp_index()
 
                             <div class="postbox">
 
-                                <h2><span><?php esc_attr_e(
-                                            'Posts Fields:', 'wpMercuryParser'
-                                        ); ?></span></h2>
+                                <h2><span>
+                                <?php
+                                esc_attr_e(
+                                    'Posts Fields:',
+                                    'wpMercuryParser'
+                                );
+                                ?>
+                                        </span></h2>
 
                                 <table class="widefat">
                                     <thead>
@@ -196,9 +217,12 @@ function wmp_index()
                                     <tr>
                                         <td class="row-title">
                                             <label for="tablecell">
-                                                <?php esc_attr_e(
-                                                    'Title', 'wpMercuryParser'
-                                                ); ?>
+                                                <?php
+                                                esc_attr_e(
+                                                    'Title',
+                                                    'wpMercuryParser'
+                                                );
+                                                ?>
                                             </label>
                                         </td>
                                         <td>
@@ -208,41 +232,69 @@ function wmp_index()
                                     <tr class="alternate">
                                         <td class="row-title">
                                             <label for="tablecell">
-                                                <?php esc_attr_e(
-                                                    'Content', 'wpMercuryParser'
-                                                ); ?>
+                                                <?php
+                                                esc_attr_e(
+                                                    'Content',
+                                                    'wpMercuryParser'
+                                                );
+                                                ?>
                                             </label>
                                         </td>
                                         <td><?php esc_attr_e('Default', 'wpMercuryParser'); ?></td>
                                     </tr>
                                     <tr>
-                                        <td class="row-title"><label for="tablecell"><?php esc_attr_e(
-                                                    'Excerpt', 'wpMercuryParser'
-                                                ); ?></label></td>
+                                        <td class="row-title"><label for="tablecell">
+                                                <?php
+                                                esc_attr_e(
+                                                    'Excerpt',
+                                                    'wpMercuryParser'
+                                                );
+                                                ?>
+                                            </label></td>
                                         <td><?php esc_attr_e('Default', 'wpMercuryParser'); ?></td>
                                     </tr>
                                     <tr>
-                                        <td class="row-title"><label for="tablecell"><?php esc_attr_e(
-                                                    'Featured Image', 'wpMercuryParser'
-                                                ); ?></label></td>
+                                        <td class="row-title"><label for="tablecell">
+                                                <?php
+                                                esc_attr_e(
+                                                    'Featured Image',
+                                                    'wpMercuryParser'
+                                                );
+                                                ?>
+                                            </label></td>
                                         <td><?php esc_attr_e('Default', 'wpMercuryParser'); ?></td>
                                     </tr>
                                     <tr class="alternate">
-                                        <td class="row-title"><label for="tablecell"><?php esc_attr_e(
-                                                    'URL', 'wpMercuryParser'
-                                                ); ?></label></td>
+                                        <td class="row-title"><label for="tablecell">
+                                                <?php
+                                                esc_attr_e(
+                                                    'URL',
+                                                    'wpMercuryParser'
+                                                );
+                                                ?>
+                                            </label></td>
                                         <td><?php esc_attr_e('Custom Field', 'wpMercuryParser'); ?></td>
                                     <tr>
                                     <tr class="alternate">
-                                        <td class="row-title"><label for="tablecell"><?php esc_attr_e(
-                                                    'Source', 'wpMercuryParser'
-                                                ); ?></label></td>
+                                        <td class="row-title"><label for="tablecell">
+                                                <?php
+                                                esc_attr_e(
+                                                    'Source',
+                                                    'wpMercuryParser'
+                                                );
+                                                ?>
+                                            </label></td>
                                         <td><?php esc_attr_e('Custom Field', 'wpMercuryParser'); ?></td>
                                     </tr>
                                     <tr class="alternate">
-                                        <td class="row-title"><label for="tablecell"><?php esc_attr_e(
-                                                    'Direction', 'wpMercuryParser'
-                                                ); ?></label></td>
+                                        <td class="row-title"><label for="tablecell">
+                                                <?php
+                                                esc_attr_e(
+                                                    'Direction',
+                                                    'wpMercuryParser'
+                                                );
+                                                ?>
+                                            </label></td>
                                         <td><?php esc_attr_e('Custom Field', 'wpMercuryParser'); ?></td>
                                     </tr>
                                     <tbody>

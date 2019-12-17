@@ -2,16 +2,17 @@
 /**
  * Ajax Functions
  *
- * @package WmpAjax
- * @developer  Postlight <http://postlight.com>
- * @version 1.0
- *
+ * @package   WmpAjax
+ * @developer Postlight <http://postlight.com>
+ * @version   1.0
  */
 if (!defined('ABSPATH')) {
     exit;
 }
 
-/** Exit if accessed directly */
+/**
+ * Exit if accessed directly
+ */
 class WmpAjax extends WmpBase
 {
 
@@ -126,7 +127,7 @@ class WmpAjax extends WmpBase
                         $result['wmp_fetch_data'] = $fetch_posts_ret_data;
                     } else {
                         $result['status'] = "warning";
-                        if (wmp_custom_endpoint) {
+                        if (WMP_CUSTOM_ENDPOINT) {
                             $result['error_type'] = "empty_invalid_api_response";
                         } else {
                             $result['error_type'] = "empty_api_response";
