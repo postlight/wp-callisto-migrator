@@ -96,7 +96,7 @@ class WmpHelpers extends WmpBase {
 
 			if ( get_post_status( $post_id ) ) {
 
-				$image_name       = sanitize_title_with_dashes( get_the_title( $post_id ) ) . '.jpg';
+				$image_name       = $this->wmp_return_img_name_from_url( $thumbnail );
 				$upload_dir       = wp_upload_dir();
 				$unique_file_name = wp_unique_filename( $upload_dir['path'], $image_name );
 				$image_data       = $this->wmp_url_get_contents( $thumbnail );
@@ -174,4 +174,14 @@ class WmpHelpers extends WmpBase {
 
 		return $output_1;
 	}
+
+	public function wmp_return_img_name_from_url($url){
+	    if($url){
+            if (strpos($url, '?') !== false) {
+                $t = explode('?',$url);
+                $url = $t[0];
+            }
+            return basename( $url );
+        }
+    }
 }
