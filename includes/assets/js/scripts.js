@@ -147,14 +147,12 @@ jQuery( '#wmp_fetch_posts' ).on(
 					} else {
 						if (response.data.status === 'warning') {
 							if (response.data.error_type === 'empty_invalid_api_response') {
-								// Return notice.
 								wmp_return_notice( 'Your custom endpoint didn\'t return any data, are you sure it\'s setup correctly?', 'notice-warning' );
 							} else {
-								// Return notice.
 								wmp_return_notice( 'Couldn\'t fetch data from entered URl(s)', 'notice-warning' );
 							}
 						} else {
-							 wmp_return_notice( 'An error occurred, please refresh to try again or contact us at https://postlight.com/#contact-us', 'notice-error' );
+							wmp_return_notice( 'An error occurred, please refresh to try again or contact us at https://postlight.com/#contact-us', 'notice-error' );
 						}
 					}
 				},
