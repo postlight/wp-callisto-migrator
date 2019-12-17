@@ -7,13 +7,25 @@
  * @version   1.0
  */
 
+/**
+ * Exit if accessed directly
+ */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class WmpPages extends WmpBase { //phpcs:ignore
+/**
+ * WmpPages Class.
+ */
+class WmpPages extends WmpBase {
 
-	private $options; //phpcs:ignore
+	/**
+	 *
+	 * WMP Settings option
+	 *
+	 * @var $options
+	 **/
+	private $options;
 
 	/**
 	 * Add pages
@@ -49,7 +61,10 @@ class WmpPages extends WmpBase { //phpcs:ignore
 		);
 	}
 
-	public function wmp_mercury_parser_settings_api_cb() { //phpcs:ignore
+	/**
+	 * Input settings callback
+	 */
+	public function wmp_mercury_parser_settings_api_cb() {
 		printf(
 			'<input type="url" placeholder="https://r0andgen27.execute-api.us-east-1.amazonaws.com/dev/parser" class="regular-text" id="wmp_settings_api_endpoint_field" name="wmp_settings_api_endpoint[wmp_settings_api_endpoint_field]" value="%s" />',
 			isset( $this->options['wmp_settings_api_endpoint_field'] ) ? esc_attr( $this->options['wmp_settings_api_endpoint_field'] ) : ''
@@ -57,10 +72,16 @@ class WmpPages extends WmpBase { //phpcs:ignore
 		echo '<span class="description"> Enter your self-hosted Merucy Parser API endpoint here</span><br>';
 	}
 
-	public function wmp_options_sections_cb() { //phpcs:ignore
+	/**
+	 * Options settings callback
+	 */
+	public function wmp_options_sections_cb() {
 	}
 
-	public function wmp_settings_cb() { //phpcs:ignore
+	/**
+	 * Settings group callback
+	 */
+	public function wmp_settings_cb() {
 		// Set class property.
 		$this->options = get_option( 'wmp_settings_api_endpoint' );
 		?>
@@ -78,7 +99,10 @@ class WmpPages extends WmpBase { //phpcs:ignore
 		<?php
 	}
 
-	public function __construct() { //phpcs:ignore
+	/**
+	 * Wmp Pages class + settings fields.
+	 */
+	public function __construct() {
 		/**
 		 * Require pages
 		 */

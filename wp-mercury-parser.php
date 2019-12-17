@@ -6,6 +6,8 @@
  * Version: 1.0
  * Author: Postlight
  * Author URI: https://postlight.com
+ *
+ * @package wp-mercury-parser
  */
 
 /**
@@ -37,15 +39,6 @@ if ( ! defined( 'WMP_PREFIX' ) ) {
 		define( 'WMP_MERCURY_PARSER_ENDPOINT', get_option( 'wmp_settings_api_endpoint' )['wmp_settings_api_endpoint_field'] );
 		define( 'WMP_CUSTOM_ENDPOINT', 1 );
 	}
-}
-
-/**
- * Root DIR
- *
- * @return string
- */
-function Wmp_Get_Plugin_dir() { // phpcs:disable
-	 return plugin_dir_path( __FILE__ );
 }
 
 /**

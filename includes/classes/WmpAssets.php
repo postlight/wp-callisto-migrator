@@ -7,16 +7,17 @@
  * @version   1.0
  */
 
+/**
+ * Exit if accessed directly
+ */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Exit if accessed directly
+ * WmpAssets Class.
  */
 class WmpAssets extends WmpBase {
-
-
 	/**
 	 * Enqueue Assets
 	 */
@@ -37,7 +38,11 @@ class WmpAssets extends WmpBase {
 		}
 	}
 
-	public function __construct() { // phpcs:ignore
+	/**
+	 *
+	 * WMP Assets Enqueues
+	 **/
+	public function __construct() {
 		add_action( 'admin_enqueue_scripts', array( &$this, 'wmp_assets' ) );
 
 		parent::__construct();

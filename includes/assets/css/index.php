@@ -1,3 +1,7 @@
 <?php
-// phpcs:disable
-// Silence is golden (retriever)
+/**
+ * Silence is golden (retriever)
+ *
+ * @package wp-mercury-parser
+ * //phpcs:disable
+ **/

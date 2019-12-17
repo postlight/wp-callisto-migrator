@@ -7,17 +7,24 @@
  * @version   1.0
  */
 
+/**
+ * Exit if accessed directly
+ */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Exit if accessed directly
+ * WmpHelpers Class.
  */
 class WmpHelpers extends WmpBase {
-
-
-	public function wmp_fetch_post_data( $fetch_posts_url ) { //phpcs:ignore
+	/**
+	 * Fetch post data from Merucy Parser API
+	 *
+	 * @param string $fetch_posts_url URL to be fetched.
+	 * @return array
+	 **/
+	public function wmp_fetch_post_data( $fetch_posts_url ) {
 		$gen_status = array();
 
 		if ( $fetch_posts_url ) {
@@ -39,7 +46,6 @@ class WmpHelpers extends WmpBase {
 				curl_close( $wmp_data );
 
 				//phpcs:enable
-
 				if ( ! empty( $wmp_data ) ) {
 					$gen_status['status'] = 'success';
 					$gen_status['data']   = $wmp_data;
@@ -59,7 +65,16 @@ class WmpHelpers extends WmpBase {
 		return $gen_status;
 	}
 
-	public function wmp_create_update_posts_meta( $post_id, $meta_key, $meta_value ) { //phpcs:ignore
+	/**
+	 * Create or update (if existing) posts meta
+	 *
+	 * @param int    $post_id Post ID.
+	 * @param string $meta_key Meta Key.
+	 * @param string $meta_value Meta Value.
+	 *
+	 * @return array
+	 **/
+	public function wmp_create_update_posts_meta( $post_id, $meta_key, $meta_value ) {
 		$gen_status = array();
 		if ( $post_id && $meta_key && $meta_value ) {
 			// Check existing meta data.
@@ -87,9 +102,19 @@ class WmpHelpers extends WmpBase {
 			$gen_status['status'] = 'error';
 			$gen_status['action'] = 'missing_param';
 		}
+
+		return $gen_status;
 	}
 
-	public function wmp_fetch_add_featured_image( $post_id, $thumbnail ) { //phpcs:ignore
+	/**
+	 * Fetch/Create media post from image source
+	 *
+	 * @param int    $post_id Post ID.
+	 * @param string $thumbnail Image URL from source.
+	 *
+	 * @return array
+	 **/
+	public function wmp_fetch_add_featured_image( $post_id, $thumbnail ) {
 		$gen_status = array();
 
 		if ( $post_id && $thumbnail ) {
@@ -161,7 +186,14 @@ class WmpHelpers extends WmpBase {
 		return $gen_status;
 	}
 
-	public function wmp_url_get_contents( $url ) { //phpcs:ignore
+	/**
+	 * Get image from source URL
+	 *
+	 * @param string $url image source URL.
+	 *
+	 * @return string
+	 **/
+	public function wmp_url_get_contents( $url ) {
 		if ( ! function_exists( 'curl_init' ) ) {
 			die( 'CURL is not installed!' );
 		}
@@ -172,16 +204,24 @@ class WmpHelpers extends WmpBase {
 		$output_1 = curl_exec( $ch_1 );
 		curl_close( $ch_1 );
 
+        //phpcs:enable
 		return $output_1;
 	}
 
-	public function wmp_return_img_name_from_url($url){
-	    if($url){
-            if (strpos($url, '?') !== false) {
-                $t = explode('?',$url);
-                $url = $t[0];
-            }
-            return basename( $url );
-        }
-    }
+	/**
+	 * Get image name and extension from source URL
+	 *
+	 * @param string $url image source URL.
+	 *
+	 * @return string
+	 **/
+	public function wmp_return_img_name_from_url( $url ) {
+		if ( $url ) {
+			if ( strpos( $url, '?' ) !== false ) {
+				$t   = explode( '?', $url );
+				$url = $t[0];
+			}
+			return basename( $url );
+		}
+	}
 }

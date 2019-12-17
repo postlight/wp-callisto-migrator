@@ -7,16 +7,21 @@
  * @version   1.0
  */
 
+/**
+ * Exit if accessed directly
+ */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Exit if accessed directly
+ * WmpAjax Class.
  */
 class WmpAjax extends WmpBase {
-	// Ajax fetch posts.
-	public function wmp_fetch_posts() { // phpcs:ignore
+	/**
+	 * Ajax fetch posts.
+	 */
+	public function wmp_fetch_posts() {
 
 		// Get values.
 		$wmp_action = isset( $_POST['action'] ) ? wp_strip_all_tags( wp_unslash( $_POST['action'] ) ) : '';
@@ -161,7 +166,11 @@ class WmpAjax extends WmpBase {
 		}
 	}
 
-	public function __construct() { // phpcs:ignore
+	/**
+	 *
+	 * WMP Ajax functions
+	 **/
+	public function __construct() {
 		add_action( 'wp_ajax_wmp_fetch_posts', array( &$this, 'wmp_fetch_posts' ) );
 
 		parent::__construct();

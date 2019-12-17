@@ -7,19 +7,48 @@
  * @version   1.0
  */
 
+/**
+ * Exit if accessed directly
+ */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Exit if accessed directly
+ * WmpBase Main Class.
  */
 class WmpBase {
+	/**
+	 *
+	 * WMP Helpers Class
+	 *
+	 * @var $helpers
+	 **/
+	public $helpers;
 
-	public $helpers; // phpcs:ignore
-	public $assets; // phpcs:ignore
-	public $ajax; // phpcs:ignore
-	public $pages; // phpcs:ignore
+	/**
+	 *
+	 * WMP Assets Class
+	 *
+	 * @var $assets
+	 **/
+	public $assets;
+
+	/**
+	 *
+	 * WMP AJAX Class
+	 *
+	 * @var $ajax
+	 **/
+	public $ajax;
+
+	/**
+	 *
+	 * WMP Pages Class
+	 *
+	 * @var $pages
+	 **/
+	public $pages;
 
 	/**
 	 * Required for extended classes to work
@@ -27,7 +56,11 @@ class WmpBase {
 	public function __construct() {
 	}
 
-	public function init() { // phpcs:ignore
+	/**
+	 *
+	 * Init WMP Plugin
+	 **/
+	public function init() {
 		/**
 		 * Require classes
 		 */
