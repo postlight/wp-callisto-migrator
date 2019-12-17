@@ -1,51 +1,50 @@
 <?php
-/*
-Plugin Name: WP Mercury Parser
-Plugin URI: https://mercury.postlight.com/web-parser/
-Description: Mercury Parser for WordPress
-Version: 1.0
-Author: Postlight
-Author URI: https://postlight.com
+/**
+ * Plugin Name: WP Mercury Parser
+ * Plugin URI: https://mercury.postlight.com/web-parser/
+ * Description: Mercury Parser for WordPress
+ * Version: 1.0
+ * Author: Postlight
+ * Author URI: https://postlight.com
+ *
+ * @package wp-mercury-parser
  */
-if (!defined('ABSPATH')) {
-    exit;
+
+/**
+ * Exit if accessed directly
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
-/** Exit if accessed directly */
 
-/** Definitions start */
-if (!defined('wmp_prefix')) {
+/**
+ * Definitions
+ */
+if ( ! defined( 'WMP_PREFIX' ) ) {
 
-    define('wmp_prefix', 'wmp_');
+	define( 'WMP_PREFIX', 'wmp_' );
 
-    define('wmp_default_timezone', 'America/New York');
-    define('wmp_date_format', 'd-m-Y');
+	define( 'WMP_DEFAULT_TIMEZONE', 'America/New York' );
+	define( 'WMP_DATE_FORMAT', 'd-m-Y' );
 
-    define('wmp_plugin_folder_name', 'wp-mercury-parser');
-    define('wmp_plugin_url', WP_PLUGIN_URL . '/' . wmp_plugin_folder_name . '/');
+	define( 'WMP_PLUGIN_FOLDER_NAME', 'wp-mercury-parser' );
+	define( 'WMP_PLUGIN_URL', WP_PLUGIN_URL . '/' . WMP_PLUGIN_FOLDER_NAME . '/' );
 
-    define('wmp_plugin_dir', dirname(__FILE__) . '/');
+	define( 'WMP_PLUGIN_DIR', dirname( __FILE__ ) . '/' );
 
-    if (isset(get_option('wmp_settings_api_endpoint')['wmp_settings_api_endpoint_field']) && get_option('wmp_settings_api_endpoint')['wmp_settings_api_endpoint_field']) {
-        define('wmp_mercury_parser_endpoint', get_option('wmp_settings_api_endpoint')['wmp_settings_api_endpoint_field']);
-        define('wmp_custom_endpoint', 1);
-    } else {
-        define('wmp_mercury_parser_endpoint', 'https://qlcdg90ss7.execute-api.us-east-1.amazonaws.com/dev/parser');
-        define('wmp_custom_endpoint', 0);
-    }
+	if ( empty( get_option( 'wmp_settings_api_endpoint' )['wmp_settings_api_endpoint_field'] ) ) {
+		define( 'WMP_MERCURY_PARSER_ENDPOINT', 'https://qlcdg90ss7.execute-api.us-east-1.amazonaws.com/dev/parser' );
+		define( 'WMP_CUSTOM_ENDPOINT', 0 );
+	} else {
+		define( 'WMP_MERCURY_PARSER_ENDPOINT', get_option( 'wmp_settings_api_endpoint' )['wmp_settings_api_endpoint_field'] );
+		define( 'WMP_CUSTOM_ENDPOINT', 1 );
+	}
 }
-/** Definitions end */
 
-/** Root DIR start */
-function wmp_get_plugin_dir() {
-    return plugin_dir_path( __FILE__ );
-}
-/** Root DIR end */
-
-/** Load plugin Start */
-require wmp_plugin_dir . '/includes/classes/WmpBase.php';
+/**
+ * Load plugin Start
+ */
+require WMP_PLUGIN_DIR . '/includes/classes/class-wmpbase.php';
 global $wmp;
-$wmp = new WmpBase;
+$wmp = new WmpBase();
 $wmp->init();
-/** Load plugin End */
-
-
