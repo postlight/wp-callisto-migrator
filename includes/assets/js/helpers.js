@@ -1,4 +1,4 @@
-function wmp_reset_notices()
+function wmp_reset_notices() // phpcs:ignore
 {
 	// General Variables.
 	var $notice      = jQuery( '.wmp_notice' );

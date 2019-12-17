@@ -96,7 +96,7 @@ jQuery( '#wmp_fetch_posts' ).on(
 					post_status: $post_status
 				},
 				success: function (response) {
-					if (response.status === "success") {
+					if (response.success) {
 						// Return notice.
 						wmp_return_notice( 'Post(s) successfully fetched and created/updated, additional details below:', 'notice-success' );
 
@@ -109,7 +109,7 @@ jQuery( '#wmp_fetch_posts' ).on(
 						// Show fetched posts.
 						var $counter = 0;
 						jQuery.each(
-							response.wmp_fetch_data,
+							response.data.wmp_fetch_data,
 							function (index, res) {
 								var $wmp_pid      = res.p_id;
 								var $wmp_ptitle   = res.p_data.title;
@@ -144,20 +144,21 @@ jQuery( '#wmp_fetch_posts' ).on(
 							},
 							800
 						);
-					} else if (response.status === 'warning') {
-						if (response.error_type === 'empty_invalid_api_response') {
-							// Return notice.
-							wmp_return_notice( 'Your custom endpoint didn\'t return any data, are you sure it\'s setup correctly?', 'notice-warning' );
-						} else {
-							// Return notice.
-							wmp_return_notice( 'Couldn\'t fetch data from entered URl(s)', 'notice-warning' );
-						}
 					} else {
-						wmp_return_notice( 'An error occurred, please refresh to try again or contact us at https://postlight.com/#contact-us', 'notice-error' );
+						if (response.data.status === 'warning') {
+							if (response.data.error_type === 'empty_invalid_api_response') {
+								// Return notice.
+								wmp_return_notice( 'Your custom endpoint didn\'t return any data, are you sure it\'s setup correctly?', 'notice-warning' );
+							} else {
+								// Return notice.
+								wmp_return_notice( 'Couldn\'t fetch data from entered URl(s)', 'notice-warning' );
+							}
+						} else {
+							 wmp_return_notice( 'An error occurred, please refresh to try again or contact us at https://postlight.com/#contact-us', 'notice-error' );
+						}
 					}
 				},
 				error: function () {
-					// Return notice.
 					wmp_return_notice( 'An error occurred, please refresh to try again or contact us at https://postlight.com/#contact-us', 'notice-error' );
 				}
 			}
