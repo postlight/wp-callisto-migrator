@@ -34,7 +34,7 @@ class WmpAssets extends WmpBase {
 
 			// Scripts.
 			wp_enqueue_script( 'wmp_js_helpers', WMP_PLUGIN_URL . 'includes/assets/js/helpers.js', array( 'jquery' ), '1.0', true );
-			wp_enqueue_script( 'wmp_js_scripts', WMP_PLUGIN_URL . 'includes/assets/js/scripts.js', array( 'jquery' ), '1.0', true );
+			wp_enqueue_script( 'wmp_js_scripts', WMP_PLUGIN_URL . 'includes/assets/js/scripts.js', array( 'jquery' ), '1.1', true );
 		}
 	}
 

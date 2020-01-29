@@ -122,6 +122,13 @@ class WmpAjax extends WmpBase {
 								$wmp_data_temp['p_data']        = $wmp_data['data'];
 								$wmp_data_temp['p_update_post'] = $wmp_update_post;
 
+								// Add site path (multisite compatibility).
+								if ( is_multisite() && get_blog_details( get_current_blog_id() ) && isset( get_blog_details( get_current_blog_id() )->path ) ) {
+									$wmp_data_temp['site_path'] = get_blog_details( get_current_blog_id() )->path;
+								} else {
+									$wmp_data_temp['site_path'] = '/';
+								}
+
 								$fetch_posts_ret_data[] = $wmp_data_temp;
 							}
 						}
