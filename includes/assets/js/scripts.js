@@ -114,6 +114,7 @@ jQuery( '#wmp_fetch_posts' ).on(
 								var $wmp_pid      = res.p_id;
 								var $wmp_ptitle   = res.p_data.title;
 								var $wmp_pexcerpt = res.p_data.content;
+								var $wmp_path     = res.site_path;
 
 								// Clone preview from origin.
 								var $wmp_to_clone        = jQuery( '.wmp_generated_to_clone' ).clone();
@@ -122,7 +123,7 @@ jQuery( '#wmp_fetch_posts' ).on(
 								$counter++;
 
 								// Fields.
-								var $wmp_edit_post_link = '/wp-admin/post.php?post=' + $wmp_pid + '&action=edit';
+								var $wmp_edit_post_link = $wmp_path + 'wp-admin/post.php?post=' + $wmp_pid + '&action=edit';
 								var $wmp_post_link      = '<a class="wmp_post_fetched_view_link" href="' + $wmp_edit_post_link + '" target="_blank">(View Post)</a>';
 
 								$wmp_to_clone.find( '.wmp_post_fetched_title' ).html( $counter + '- ' + $wmp_ptitle + ' ' + $wmp_post_link );
