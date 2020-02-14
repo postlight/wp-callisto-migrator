@@ -69,7 +69,7 @@ class WmpPages extends WmpBase {
 			'<input type="url" placeholder="https://r0andgen27.execute-api.us-east-1.amazonaws.com/dev/parser" class="regular-text" id="wmp_settings_api_endpoint_field" name="wmp_settings_api_endpoint[wmp_settings_api_endpoint_field]" value="%s" />',
 			isset( $this->options['wmp_settings_api_endpoint_field'] ) ? esc_attr( $this->options['wmp_settings_api_endpoint_field'] ) : ''
 		);
-		echo '<span class="description"> Enter your self-hosted Merucy Parser API endpoint here</span><br>';
+		echo '<span class="description"> Enter your self-hosted Mercury Parser API endpoint here</span><br>';
 	}
 
 	/**
