@@ -1,33 +1,25 @@
 # WordPress Mercury Parser
-Create WordPress posts using the [Mercury Parser API](https://github.com/postlight/mercury-parser).
-
-## How it works
-The WordPress Mercury Parser allows for creating WP posts by importing content from other websites using the Mercury Parser API
+Create WordPress posts using the [Mercury Parser API](https://github.com/postlight/mercury-parser). Simply provide URLs to this plugin, and have them reconstructed within your own WordPress CMS (or dashboard?).
 
 ![example](/demo.gif)
 
-## Features
-1. Imports 5 URLs per batch
-2. Ignores invalid and duplicate URLs
-3. Posts listing (with title + content) after creation ???
-4. Ability of adding custom end points for the Mercury Parser API ???
-5. Updates post fields of existing URLs ???
+## Installation
+1. Download the zip file of this repo [here](https://github.com/postlight/wp-mercury-parser/archive/master.zip).
+2. Follow the instructions [here](https://wordpress.org/support/article/managing-plugins/#installing-plugins) to install the plugin.
+3. Verify the installation by checking the installed plugins on the WordPress dashboard.
+4. If desired, the plugin has its own settings page where you can change the Mercury Parser API endpoint.
 
-## In the near future...
-1. Preview posts (with title, content, featured image and custom fields) before creation
-2. Select or bulk create posts after preview
-3. Import logging with ability to update posts
-4. UTF support for imported URLss
+## Instructions
+The WordPress Mercury Parser allows for creating WP posts by importing content from other websites using the Mercury Parser API. The process is
+simple and straightforward:
+  1. On the plugin page, select the text box and enter up to 5 URLs per batch. Malformed or duplicate URLs will be ignored.
+  2. For each URL, the plugin will then trigger the Mercury Parser to parse through each of the desired pages, and then have them reconstructed in WordPress.
+  3. Pages that were successfully parsed will appear below, each previewable and editable.
 
-## Test URLs
-- https://postlight.com/trackchanges/mercury-goes-open-source
-- https://postlight.com/trackchanges/mercury-goes-open-source
-- https://postlight.com/trackchanges/introducing-yap-from-postlight-labs
-- https://postlight.com/trackchanges/after-app-stores
-- https://postlight.com/trackchanges/live-coding
-- https://postlight.com/trackchanges/meeting-calendar-makeover-the-power-of-heads-down-days
-- https://postlight.com/trackchanges/the-new-new-thing
-- https://postlight.com/trackchanges/mercury-goes-open-source
+## Roadmap
+- Select or bulk create posts after preview.
+- Import logging with ability to update posts.
+- UTF support for imported URLs.
 
 ## Posts Fields
 
