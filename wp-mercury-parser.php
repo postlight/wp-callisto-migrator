@@ -33,7 +33,7 @@ if ( ! defined( 'WMP_PREFIX' ) ) {
 	define( 'WMP_PLUGIN_DIR', dirname( __FILE__ ) . '/' );
 
 	if ( empty( get_option( 'wmp_settings_api_endpoint' )['wmp_settings_api_endpoint_field'] ) ) {
-		define( 'WMP_MERCURY_PARSER_ENDPOINT', 'https://qlcdg90ss7.execute-api.us-east-1.amazonaws.com/dev/parser' );
+		define( 'WMP_MERCURY_PARSER_ENDPOINT', 'https://postlight-mercury-parser-api.glitch.me/parse' );
 		define( 'WMP_CUSTOM_ENDPOINT', 0 );
 	} else {
 		define( 'WMP_MERCURY_PARSER_ENDPOINT', get_option( 'wmp_settings_api_endpoint' )['wmp_settings_api_endpoint_field'] );
