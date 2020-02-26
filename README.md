@@ -1,4 +1,5 @@
-# WordPress Mercury Parser
+# WordPress Universal Migrator
+Migrate any content to WordPress in a few clicks with the WordPress Universal Migrator. This WordPress plugin leverages the [Mercury Parser](https://github.com/postlight/mercury-parser) to extract your content from anywhere it lives and easily move it to WordPress.
 Create WordPress posts using the [Mercury Parser API](https://github.com/postlight/mercury-parser). Simply provide URLs to this plugin, and have them reconstructed within your own WordPress CMS (or dashboard?).
 
 ![example](/demo.gif)
@@ -10,7 +11,7 @@ Create WordPress posts using the [Mercury Parser API](https://github.com/postlig
 4. If desired, the plugin has its own settings page where you can change the Mercury Parser API endpoint.
 
 ## Instructions
-The WordPress Mercury Parser allows for creating WP posts by importing content from other websites using the Mercury Parser API. The process is
+The WordPress Universal Migrator allows for creating WP posts by importing content from other websites using the Mercury Parser API. The process is
 simple and straightforward:
   1. On the plugin page, select the text box and enter up to 5 URLs per batch. Malformed or duplicate URLs will be ignored.
   2. For each URL, the plugin will then trigger the Mercury Parser to parse through each of the desired pages, and then have them reconstructed in WordPress.
@@ -36,7 +37,6 @@ simple and straightforward:
 ## License
 
 Licensed under either of
-
 Apache License, Version 2.0 (LICENSE-APACHE or http://www.apache.org/licenses/LICENSE-2.0)
 MIT license (LICENSE-MIT or http://opensource.org/licenses/MIT)
 at your option.
