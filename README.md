@@ -1,3 +1,5 @@
+![callisto](/callisto.jpg)
+
 # WordPress Universal Migrator
 Migrate any content to WordPress in a few clicks with the WordPress Universal Migrator. This WordPress plugin leverages the [Mercury Parser](https://github.com/postlight/mercury-parser) to extract your content from anywhere it lives and easily move it to WordPress.
 Create WordPress posts using the [Mercury Parser API](https://github.com/postlight/mercury-parser). Simply provide URLs to this plugin, and have them reconstructed within your own WordPress CMS (or dashboard?).
