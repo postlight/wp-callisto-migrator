@@ -13,8 +13,8 @@ Labs](https://postlight.com/labs).
 ![example](/demo.gif)
 
 ## Installation
-1. Download the zip file of this repo [here](https://github.com/postlight/wp-mercury-parser/archive/master.zip).
-2. Follow the instructions [here](https://wordpress.org/support/article/managing-plugins/#installing-plugins) to install the plugin.
+1. Download the [zip file of this repo](https://github.com/postlight/wp-mercury-parser/archive/master.zip).
+2. Follow [these instructions](https://wordpress.org/support/article/managing-plugins/#installing-plugins) to install the plugin.
 3. Verify the installation by checking the installed plugins on the WordPress dashboard.
 
 ## Instructions
@@ -25,11 +25,6 @@ straightforward steps:
   2. Click Fetch and Create Posts
   3. You're done. Pages that were successfully parsed will appear below the
      form, where you can preview and edit them if necessary.
-
-## Roadmap
-- Select or bulk create posts after preview.
-- Import logging with ability to update posts.
-- UTF support for imported URLs.
 
 ## License
 
