@@ -1,6 +1,6 @@
 ![callisto](/callisto.jpg)
 
-# Callisto - A WordPress migration plugin powered by Mercury
+# Callisto - A WordPress migration plugin
 Migrate any content from around the web to WordPress instantly. Callisto is a
 WordPress migration plugin that’s fast and easy to use. Simply paste in the
 links of up to five pieces of content from anywhere in the known universe.
