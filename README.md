@@ -6,7 +6,8 @@ WordPress migration plugin that’s fast and easy to use. Simply paste in the
 links of up to five pieces of content from anywhere in the known universe.
 Callisto will extract the content and create WordPress posts in your new or
 existing CMS. Powered by the [Mercury
-Parser](https://github.com/postlight/mercury-parser) from Postlight Labs.
+Parser](https://github.com/postlight/mercury-parser) from [Postlight
+Labs](https://postlight.com/labs).
 
 ## Demo
 ![example](/demo.gif)
