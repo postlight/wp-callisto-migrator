@@ -19,11 +19,11 @@ Parser](https://github.com/postlight/mercury-parser) from Postlight Labs.
 ## Instructions
 Import content from other websites using Callisto in a few simple and
 straightforward steps:
-  1. On the plugin page, select the text box and enter up to 5 URLs per batch. Malformed or duplicate URLs will be ignored.
-  2. For each URL, the plugin will use Mercury Parser to parse each of the
-     desired pages, and then reconstruct them in WordPress.
-  3. Pages that were successfully parsed will appear below the form, where you
-     can preview and edit them if necessary.
+
+  1. Paste up to 5 URLs into the plugin.
+  2. Click Fetch and Create Posts
+  3. You're done. Pages that were successfully parsed will appear below the
+     form, where you can preview and edit them if necessary.
 
 ## Roadmap
 - Select or bulk create posts after preview.
