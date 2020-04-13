@@ -13,18 +13,25 @@ Labs](https://postlight.com/labs).
 ![example](/demo.gif)
 
 ## Installation
-1. Download the [zip file of this repo](https://github.com/postlight/wp-mercury-parser/archive/master.zip).
-2. Follow [these instructions](https://wordpress.org/support/article/managing-plugins/#installing-plugins) to install the plugin.
-3. Verify the installation by checking the installed plugins on the WordPress dashboard.
+1. Download the [zip file of this
+   repo](https://github.com/postlight/wp-mercury-parser/archive/master.zip).
+1. Follow [these
+   instructions](https://wordpress.org/support/article/managing-plugins/#installing-plugins)
+   to install the plugin.
+1. Verify the installation by checking the installed plugins on the WordPress
+   dashboard.
 
-## Instructions
-Import content from other websites using Callisto in a few simple and
-straightforward steps:
+## Usage
+Once installed, you can use Callisto to import content from anywhere in a few
+simple and straightforward steps:
 
-  1. Paste up to 5 URLs into the plugin.
-  2. Click Fetch and Create Posts
-  3. You're done. Pages that were successfully parsed will appear below the
+  1. Navigate to the plugin
+  1. Paste up to 5 URLs.
+  1. Click Fetch and Create Posts.
+  1. You're done. Pages that were successfully parsed will appear below the
      form, where you can preview and edit them if necessary.
+
+...or just see the [demo](#demo) above.
 
 ## License
 
@@ -35,8 +42,12 @@ at your option.
 
 ## Contributing
 
-Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any additional terms or conditions. All contributors must follow the [Code of Conduct](/CODE_OF_CONDUCT.md).
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in the work by you, as defined in the Apache-2.0 license, shall
+be dual licensed as above, without any additional terms or conditions. All
+contributors must follow the [Code of Conduct](/CODE_OF_CONDUCT.md).
 
 ---
 
-🔬 A Labs project from your friends at [Postlight](https://postlight.com/). Happy coding!
+🔬 A Labs project from your friends at [Postlight](https://postlight.com/).
+Happy coding!
