@@ -1,13 +1,10 @@
 ![callisto](/callisto.jpg)
 
 # Callisto - A WordPress migration plugin
-Migrate any content from around the web to WordPress instantly. Callisto is a
-WordPress migration plugin that’s fast and easy to use. Simply paste in the
-links of up to five pieces of content from anywhere in the known universe.
-Callisto will extract the content and create WordPress posts in your new or
-existing CMS. Powered by the [Mercury
-Parser](https://github.com/postlight/mercury-parser) from [Postlight
-Labs](https://postlight.com/labs).
+The Callisto WordPress Migration Plugin allows you to migrate content from any
+web site into a new or existing WordPress instance instantly. Callisto is
+powered by [Mercury Parser](https://github.com/postlight/mercury-parser)
+from [Postlight Labs](https://postlight.com/labs).
 
 ## Demo
 ![example](/demo.gif)
@@ -25,13 +22,13 @@ Labs](https://postlight.com/labs).
 Once installed, you can use Callisto to import content from anywhere in a few
 simple and straightforward steps:
 
-  1. Navigate to the plugin
-  1. Paste up to 5 URLs.
-  1. Click Fetch and Create Posts.
-  1. You're done. Pages that were successfully parsed will appear below the
+  1. Navigate to the plugin.
+  1. Paste up to 5 URLs in the text field.
+  1. Click "Fetch and Create Posts."
+  1. You're done! Pages that were successfully parsed will appear below the
      form, where you can preview and edit them if necessary.
 
-...or just see the [demo](#demo) above.
+Refer to the [demo](#demo) above to see it in action.
 
 ## License
 
