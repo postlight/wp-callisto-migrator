@@ -1,4 +1,4 @@
-![callisto](/callisto.jpg)
+![callisto](/assets/callisto.jpg)
 
 # Callisto - A WordPress migration plugin
 The Callisto WordPress Migration Plugin allows you to migrate content from any
@@ -7,11 +7,11 @@ powered by [Mercury Parser](https://github.com/postlight/mercury-parser)
 from [Postlight Labs](https://postlight.com/labs).
 
 ## Demo
-![example](/demo.gif)
+![example](/assets/demo.gif)
 
 ## Installation
 1. Download the [zip file of this
-   repo](https://github.com/postlight/wp-mercury-parser/archive/master.zip).
+   repo](https://github.com/postlight/wp-callisto-migrator/archive/master.zip).
 1. Follow [these
    instructions](https://wordpress.org/support/article/managing-plugins/#installing-plugins)
    to install the plugin.
