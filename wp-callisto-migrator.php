@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name: WP Mercury Parser
+ * Plugin Name: WP Callisto Migrator
  * Plugin URI: https://mercury.postlight.com/web-parser/
  * Description: Mercury Parser for WordPress
  * Version: 1.0
  * Author: Postlight
  * Author URI: https://postlight.com
  *
- * @package wp-mercury-parser
+ * @package wp-callisto-migrator
  */
 
 /**
@@ -27,7 +27,7 @@ if ( ! defined( 'WMP_PREFIX' ) ) {
 	define( 'WMP_DEFAULT_TIMEZONE', 'America/New York' );
 	define( 'WMP_DATE_FORMAT', 'd-m-Y' );
 
-	define( 'WMP_PLUGIN_FOLDER_NAME', 'wp-mercury-parser' );
+	define( 'WMP_PLUGIN_FOLDER_NAME', 'wp-callisto-migrator' );
 	define( 'WMP_PLUGIN_URL', WP_PLUGIN_URL . '/' . WMP_PLUGIN_FOLDER_NAME . '/' );
 
 	define( 'WMP_PLUGIN_DIR', dirname( __FILE__ ) . '/' );

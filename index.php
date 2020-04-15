@@ -2,6 +2,6 @@
 /**
  * Silence is golden (retriever)
  *
- * @package wp-mercury-parser
+ * @package wp-callisto-migrator
  * //phpcs:disable
  **/

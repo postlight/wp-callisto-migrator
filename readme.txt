@@ -1,23 +1,34 @@
-=== Plugin Name ===
-Author: Postlight
-Author URI: https://postlight.com
-Plugin URI: https://mercury.postlight.com/web-parser/
-Requires at least: 4.0.0
-Stable tag: 1.0
+=== WP Callisto Migrator ===
+Contributors: Postlight
+Tags: posts, posts importer, content parser, mercury parser
+Requires at least: 5.0
 Tested up to: 5.3
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Stable tag: v1.0
+Requires PHP: 5.6.0
+License: MIT
+License URI: https://github.com/postlight/wp-callisto-migrator/blob/master/LICENSE-MIT
+
+Callisto is a WordPress migration plugin that’s fast and easy to use. Migrate any content from around the web to WordPress instantly.
 
 == Description ==
 
-Mercury Parser for WordPress
+Migrate any content from around the web to WordPress instantly. Callisto is a WordPress migration plugin that’s fast and easy to use.
+Simply paste in the links of up to five pieces of content from anywhere in the known universe.
+Callisto will extract the content and create WordPress posts in your new or existing CMS. Powered by the [Mercury Parser](https://github.com/postlight/mercury-parser) from [Postlight Labs](https://postlight.com/labs).
 
 == Installation ==
 
-1. Upload `wp-mercury-parser` to the `_WP_CONTENT_DIR_/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
+1. Upload the plugin files to the `/wp-content/plugins/wp-callisto-migrator` directory, or install the plugin through the WordPress plugins screen directly.
+2. Activate the plugin through the 'Plugins' screen in WordPress
+3. Use the Settings->WP Callisto Migrator screen to configure the plugin
+
+== Screenshots ==
+
+![example](/assets/demo.gif)
+![before-parse](/assets/before-parse.png)
+![after-parse](/assets/after-parse.png)
 
 == Changelog ==
 
 = 1.0 =
-* Initial release
+Initial release.

@@ -26,7 +26,7 @@ function wmp_index() {
 		<div class="wrap">
 
 			<div id="icon-options-general" class="icon32"></div>
-			<h1><?php esc_attr_e( 'WP Mercury Parser', 'wpMercuryParser' ); ?></h1>
+			<h1><?php esc_attr_e( 'Callisto Migrator', 'wpMercuryParser' ); ?></h1>
 
 			<div id="poststuff">
 
