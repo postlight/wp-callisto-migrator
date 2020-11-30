@@ -2,8 +2,8 @@
 Contributors: Postlight
 Tags: posts, posts importer, content parser, mercury parser
 Requires at least: 5.0
-Tested up to: 5.3
-Stable tag: v1.0
+Tested up to: 5.6
+Stable tag: v1.1
 Requires PHP: 5.6.0
 License: MIT
 License URI: https://github.com/postlight/wp-callisto-migrator/blob/master/LICENSE-MIT
@@ -32,3 +32,6 @@ Callisto will extract the content and create WordPress posts in your new or exis
 
 = 1.0 =
 Initial release.
+
+= 1.1 =
+CSS fix to support WordPress 5.6.
