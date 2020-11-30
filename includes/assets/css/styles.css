@@ -20,3 +20,12 @@
 .wmp_page .wmp_cursor {
 	cursor: pointer;
 }
+
+.wmp_page .wmp_post_toggle {
+	position: absolute;
+	right: 0;
+}
+
+.wmp_generated_cloned_posts .postbox {
+	margin-bottom: 0;
+}
