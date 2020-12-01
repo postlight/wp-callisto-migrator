@@ -1,9 +1,9 @@
 === Callisto ===
 Contributors: postlightlabs
 Tags: posts, posts importer, content parser, mercury parser
-Requires at least: 5.3.2
-Tested up to: 5.4
-Stable tag: v1.0
+Requires at least: 5.0
+Tested up to: 5.6
+Stable tag: v1.2
 Requires PHP: 5.6.0
 License: Apache License, Version 2.0
 License URI: https://github.com/postlight/wp-callisto-migrator/blob/master/LICENSE-APACHE
