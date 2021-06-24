@@ -28,7 +28,6 @@ if ( ! defined( 'WMP_PREFIX' ) ) {
 	define( 'WMP_DATE_FORMAT', 'd-m-Y' );
 
 	define( 'WMP_PLUGIN_FOLDER_NAME', 'wp-callisto-migrator' );
-	define( 'WMP_PLUGIN_URL', WP_PLUGIN_URL . '/' . WMP_PLUGIN_FOLDER_NAME . '/' );
 
 	define( 'WMP_PLUGIN_DIR', dirname( __FILE__ ) . '/' );
 
