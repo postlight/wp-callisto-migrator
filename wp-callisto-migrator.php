@@ -3,7 +3,7 @@
  * Plugin Name: WP Callisto Migrator
  * Plugin URI: https://mercury.postlight.com/web-parser/
  * Description: Mercury Parser for WordPress
- * Version: 1.0
+ * Version: 1.3
  * Author: Postlight
  * Author URI: https://postlight.com
  *
