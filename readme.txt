@@ -2,7 +2,7 @@
 Contributors: postlightlabs
 Tags: posts, posts importer, content parser, mercury parser
 Requires at least: 5.0
-Tested up to: 5.6
+Tested up to: 5.8
 Stable tag: v1.2
 Requires PHP: 5.6.0
 License: Apache License, Version 2.0
