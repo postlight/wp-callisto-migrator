@@ -3,7 +3,7 @@
  * Plugin Name: WP Callisto Migrator
  * Plugin URI: https://mercury.postlight.com/web-parser/
  * Description: Mercury Parser for WordPress
- * Version: 1.0
+ * Version: 1.3
  * Author: Postlight
  * Author URI: https://postlight.com
  *
@@ -28,7 +28,6 @@ if ( ! defined( 'WMP_PREFIX' ) ) {
 	define( 'WMP_DATE_FORMAT', 'd-m-Y' );
 
 	define( 'WMP_PLUGIN_FOLDER_NAME', 'wp-callisto-migrator' );
-	define( 'WMP_PLUGIN_URL', WP_PLUGIN_URL . '/' . WMP_PLUGIN_FOLDER_NAME . '/' );
 
 	define( 'WMP_PLUGIN_DIR', dirname( __FILE__ ) . '/' );
 
