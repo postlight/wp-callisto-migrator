@@ -3,7 +3,7 @@ Contributors: postlightlabs
 Tags: posts, posts importer, content parser, mercury parser
 Requires at least: 5.0
 Tested up to: 5.8
-Stable tag: v1.2
+Stable tag: v1.3
 Requires PHP: 5.6.0
 License: Apache License, Version 2.0
 License URI: https://github.com/postlight/wp-callisto-migrator/blob/master/LICENSE-APACHE
@@ -35,3 +35,6 @@ readme fixes/updates
 
 = 1.2 =
 CSS fix to support WordPress 5.6.
+
+= 1.3 =
+Supporting WordPress 5.7.2.

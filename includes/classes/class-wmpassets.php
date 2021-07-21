@@ -29,12 +29,15 @@ class WmpAssets extends WmpBase {
 			'toplevel_page_wmp_settings',
 		);
 		if ( in_array( $current_page, $wmp_plugin_pages, true ) ) {
-			// Styles.
-			wp_enqueue_style( 'wmp_src_css', WMP_PLUGIN_URL . 'includes/assets/css/styles.css', array(), '1.0' );
+			// Register styles and scripts.
+			wp_register_style( 'wmp_src_css', plugins_url('../assets/css/styles.css', __FILE__), array(), '1.3' );
+			wp_register_script( 'wmp_js_helpers', plugins_url('../assets/js/helpers.js', __FILE__), array( 'jquery' ), '1.3', true );
+			wp_register_script( 'wmp_js_scripts', plugins_url('../assets/js/scripts.js', __FILE__), array( 'jquery' ), '1.3', true );
 
-			// Scripts.
-			wp_enqueue_script( 'wmp_js_helpers', WMP_PLUGIN_URL . 'includes/assets/js/helpers.js', array( 'jquery' ), '1.0', true );
-			wp_enqueue_script( 'wmp_js_scripts', WMP_PLUGIN_URL . 'includes/assets/js/scripts.js', array( 'jquery' ), '1.1', true );
+			// Enqueue styles and scripts.
+			wp_enqueue_style( 'wmp_src_css' );
+			wp_enqueue_script( 'wmp_js_helpers' );
+			wp_enqueue_script( 'wmp_js_scripts' );
 		}
 	}
 

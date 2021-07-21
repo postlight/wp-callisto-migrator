@@ -25,6 +25,11 @@
 	right: 0;
 }
 
-.wmp_generated_cloned_posts .postbox {
+.wmp_page .wmp_generated_cloned_posts .postbox {
 	margin-bottom: 0;
+}
+
+.wmp_page .wmp_generated_cloned_posts .article-preview__image-container img{
+	width: 100%;
+	height: auto;
 }
