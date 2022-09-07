@@ -1,10 +1,9 @@
-![callisto](/assets/callisto.jpg)
+![callisto](/assets/callisto.png)
 
 # Callisto - A WordPress migration plugin
 [Postlight](https://postlight.com)'s Callisto WordPress Migration Plugin allows
 you to migrate content from any web site into a new or existing WordPress
-instance instantly. Callisto is powered by [Mercury
-Parser](https://github.com/postlight/mercury-parser) from [Postlight
+instance instantly. Callisto is powered by [Postlight Parser](https://github.com/postlight/parser) from [Postlight
 Labs](https://postlight.com/labs).
 
 ## Demo
