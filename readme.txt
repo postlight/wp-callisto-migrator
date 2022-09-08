@@ -1,6 +1,6 @@
 === Callisto ===
 Contributors: postlightlabs
-Tags: posts, posts importer, content parser, mercury parser
+Tags: posts, posts importer, content parser, mercury parser, postlight parser
 Requires at least: 5.0
 Tested up to: 5.8
 Stable tag: v1.3
@@ -13,7 +13,7 @@ Callisto is a WordPress migration plugin that’s fast and easy to use. Migrate 
 == Description ==
 Migrate any content from around the web to WordPress instantly. Callisto is a WordPress migration plugin that’s fast and easy to use.
 Simply paste in the links of up to five pieces of content from anywhere in the known universe.
-Callisto will extract the content and create WordPress posts in your new or existing CMS. Powered by the [Mercury Parser](https://github.com/postlight/mercury-parser) from [Postlight Labs](https://postlight.com/labs).
+Callisto will extract the content and create WordPress posts in your new or existing CMS. Powered by the [Postlight Parser](https://github.com/postlight/parser) from [Postlight Labs](https://postlight.com/labs).
 
 == Installation ==
 1. Upload the plugin files to the `/wp-content/plugins/wp-callisto-migrator` directory, or install the plugin through the WordPress plugins screen directly.

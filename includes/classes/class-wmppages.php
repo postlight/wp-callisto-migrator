@@ -69,7 +69,7 @@ class WmpPages extends WmpBase {
 			'<input type="url" placeholder="https://r0andgen27.execute-api.us-east-1.amazonaws.com/dev/parser" class="regular-text" id="wmp_settings_api_endpoint_field" name="wmp_settings_api_endpoint[wmp_settings_api_endpoint_field]" value="%s" />',
 			isset( $this->options['wmp_settings_api_endpoint_field'] ) ? esc_attr( $this->options['wmp_settings_api_endpoint_field'] ) : ''
 		);
-		echo '<span class="description"> Enter your self-hosted Mercury Parser API endpoint here</span><br>';
+		echo '<span class="description"> Enter your self-hosted Postlight Parser API endpoint here</span><br>';
 	}
 
 	/**
@@ -86,7 +86,7 @@ class WmpPages extends WmpBase {
 		$this->options = get_option( 'wmp_settings_api_endpoint' );
 		?>
 		<div class="wrap">
-			<h1>WP Mercury API Settings</h1>
+			<h1>WP Postlight Parser API Settings</h1>
 			<?php settings_errors(); ?>
 			<form method="post" action="options.php">
 				<?php
